@@ -3,6 +3,7 @@ const topbar = document.querySelector(".topbar");
 const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".nav");
 const navLinks = document.querySelectorAll('.nav a[href^="#"]');
+const MOBILE_NAV_BREAKPOINT = 1167;
 const sections = Array.from(navLinks)
   .map((link) => document.querySelector(link.getAttribute("href")))
   .filter(Boolean);
@@ -17,7 +18,7 @@ const getTopbarOffset = () => {
   }
 
   const stickyTop = Number.parseFloat(window.getComputedStyle(topbar).top) || 0;
-  const gap = window.innerWidth <= 760 ? 16 : 24;
+  const gap = window.innerWidth <= MOBILE_NAV_BREAKPOINT ? 16 : 24;
 
   return Math.ceil(topbar.getBoundingClientRect().height + stickyTop + gap);
 };
@@ -92,7 +93,7 @@ if (menuToggle && nav) {
 
       event.preventDefault();
 
-      if (window.innerWidth <= 760) {
+      if (window.innerWidth <= MOBILE_NAV_BREAKPOINT) {
         menuToggle.setAttribute("aria-expanded", "false");
         nav.classList.remove("is-open");
       }

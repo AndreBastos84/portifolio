@@ -198,7 +198,7 @@ if (contactForm && formStatus) {
       "BRIEFING DE CONTATO",
       `NOME: ${name}`,
       `E-MAIL: ${email}`,
-      `EMPRESA: ${company || "NÃO INFORMADA"}`,
+      `EMPRESA: ${company || "NAO INFORMADA"}`,
       `PROJETO: ${project}`,
     ].join("\n");
 
@@ -208,7 +208,7 @@ if (contactForm && formStatus) {
         "Briefing preparado e copiado. Agora ele pode ser enviado pelo canal de contato preferido.";
     } catch (error) {
       formStatus.textContent =
-        "Briefing preparado. Copie os dados do formulário para enviar pelo canal de contato preferido.";
+        "Briefing preparado. Copie os dados do formulario para enviar pelo canal de contato preferido.";
     }
 
     contactForm.reset();

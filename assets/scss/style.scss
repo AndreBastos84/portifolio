@@ -1239,15 +1239,75 @@ article[id] {
   text-transform: uppercase;
 }
 
-.client-note {
+.clients-prompt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0 0.35rem;
   margin: 18px 0 0;
-  display: grid;
-  gap: 6px;
-  line-height: 1.75;
+  color: var(--color-primary);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-shadow: 0 0 12px rgba(106, 255, 77, 0.18);
+  text-transform: uppercase;
 }
 
-.client-note p {
-  margin: 0;
+.clients-prompt__symbol {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.clients-prompt__label {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.clients-prompt__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 3ch;
+  width: 3ch;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+  letter-spacing: 0;
+}
+
+.clients-prompt__dots {
+  display: inline-block;
+  width: 1ch;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: 0;
+  animation: promptDots 1.2s linear infinite;
+}
+
+@keyframes promptDots {
+  0%,
+  24.99% {
+    width: 1ch;
+  }
+
+  25%,
+  49.99% {
+    width: 2ch;
+  }
+
+  50%,
+  74.99% {
+    width: 3ch;
+  }
+
+  75%,
+  100% {
+    width: 1ch;
+  }
 }
 
 .contact {
@@ -1584,6 +1644,12 @@ article[id] {
 
   .client-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .clients-prompt {
+    font-size: 0.76rem;
+    justify-content: flex-start;
+    text-align: left;
   }
 
   .projects-carousel {

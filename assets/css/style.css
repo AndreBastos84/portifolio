@@ -1273,26 +1273,34 @@ article[id] {
 
 .contact__facts {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
 .contact__fact {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 16px;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  padding: 22px 18px;
   border: 1px solid rgba(163, 255, 123, 0.16);
   background: rgba(6, 15, 6, 0.68);
+  text-align: center;
+}
+
+.contact__fact .icon {
+  width: 60px;
+  height: 60px;
 }
 
 .contact__fact div {
+  display: grid;
+  gap: 8px;
   min-width: 0;
+  justify-items: center;
 }
 
 .contact__fact span {
   display: block;
-  margin-bottom: 10px;
   color: var(--text-muted);
   font-size: 0.75rem;
   letter-spacing: 0.18em;
@@ -1305,6 +1313,13 @@ article[id] {
   line-height: 1.6;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.contact__fact p {
+  margin: 0;
+  color: var(--text-strong);
+  font-size: 0.94rem;
+  line-height: 1.6;
 }
 
 .contact-form {

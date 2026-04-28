@@ -551,10 +551,7 @@ article[id] {
 }
 
 .about-grid {
-  display: grid;
-  grid-template-columns: 140px minmax(0, 1fr);
-  gap: 20px;
-  align-items: start;
+  display: block;
 }
 
 .terminal-art {
@@ -606,19 +603,30 @@ article[id] {
 }
 
 .about-copy {
-  display: grid;
-  gap: 16px;
+  display: block;
   line-height: 1.8;
+}
+
+.about-copy .terminal-art {
+  float: right;
+  width: min(38%, 240px);
+  margin: 4px 0 18px 22px;
 }
 
 .about-copy p {
   margin: 0;
 }
 
+.about-copy p + p {
+  margin-top: 16px;
+}
+
 .about-metrics {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
+  clear: both;
+  margin-top: 20px;
 }
 
 .metric-card,
@@ -654,6 +662,11 @@ article[id] {
   color: var(--text-strong);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.metric-card__head .icon {
+  width: 39px;
+  height: 39px;
 }
 
 .metric-card__head strong {
@@ -1148,7 +1161,7 @@ article[id] {
 
 .client-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(9, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -1162,14 +1175,21 @@ article[id] {
   background: rgba(6, 15, 6, 0.68);
   color: var(--text-strong);
   text-align: center;
-  font-size: 0.88rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .client-note {
   margin: 18px 0 0;
+  display: grid;
+  gap: 6px;
   line-height: 1.75;
+}
+
+.client-note p {
+  margin: 0;
 }
 
 .contact {
@@ -1341,9 +1361,13 @@ article[id] {
     justify-content: flex-end;
   }
   .about-metrics,
-  .client-grid,
   .contact__facts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1100px) {
+  .client-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
 @media (max-width: 1167px) {
@@ -1409,10 +1433,11 @@ article[id] {
     gap: 12px 14px;
     padding: 12px 14px;
   }
-  .about-grid,
-  .projects-grid,
-  .client-grid {
-    grid-template-columns: 1fr;
+  .about-copy .terminal-art {
+    float: none;
+    width: 100%;
+    max-width: none;
+    margin: 0 0 18px;
   }
   .timeline__list {
     grid-template-columns: 1fr;
@@ -1464,6 +1489,9 @@ article[id] {
   .about-metrics,
   .contact__facts {
     grid-template-columns: 1fr;
+  }
+  .client-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .projects-carousel {
     --projects-per-view: 1;

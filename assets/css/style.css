@@ -1284,7 +1284,9 @@ article[id] {
   padding: 22px 18px;
   border: 1px solid rgba(163, 255, 123, 0.16);
   background: rgba(6, 15, 6, 0.68);
+  color: inherit;
   text-align: center;
+  text-decoration: none;
 }
 
 .contact__fact .icon {

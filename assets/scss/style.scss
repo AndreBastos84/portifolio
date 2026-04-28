@@ -867,34 +867,6 @@ article[id] {
   font-size: 0.8rem;
 }
 
-.projects-carousel__dots {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.projects-carousel__dot {
-  appearance: none;
-  width: 10px;
-  height: 10px;
-  border: 1px solid rgba(163, 255, 123, 0.26);
-  border-radius: 50%;
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-  transition:
-    background var(--transition),
-    border-color var(--transition),
-    transform var(--transition);
-}
-
-.projects-carousel__dot.is-active {
-  border-color: var(--line-bright);
-  background: var(--line-bright);
-  transform: scale(1.05);
-}
-
 .timeline__list {
   position: relative;
   display: grid;

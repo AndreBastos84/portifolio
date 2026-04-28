@@ -180,23 +180,17 @@ window.addEventListener("load", () => {
   }
 });
 
-const formatCarouselNumber = (value) => String(value).padStart(2, "0");
-
 const setupCarousel = (carousel) => {
   const viewport = carousel.querySelector("[data-carousel-viewport]");
   const cards = Array.from(carousel.querySelectorAll(".project-card"));
   const prevButton = carousel.querySelector("[data-carousel-prev]");
   const nextButton = carousel.querySelector("[data-carousel-next]");
-  const dotsContainer = carousel.querySelector("[data-carousel-dots]");
-  const currentPageTarget = carousel.querySelector("[data-carousel-page]");
-  const totalPageTarget = carousel.querySelector("[data-carousel-total]");
 
   if (!viewport || !cards.length || !prevButton || !nextButton) {
     return;
   }
 
   let currentPage = 0;
-  let dots = [];
   let isCarouselTicking = false;
 
   const getCarouselEdge = () => {
@@ -260,55 +254,13 @@ const setupCarousel = (carousel) => {
     window.requestAnimationFrame(updateCarouselState);
   };
 
-  const rebuildDots = () => {
-    if (!dotsContainer) {
-      return;
-    }
-
-    const pageCount = getPageCount();
-
-    if (dots.length === pageCount) {
-      return;
-    }
-
-    dotsContainer.innerHTML = "";
-    dots = Array.from({ length: pageCount }, (_, index) => {
-      const dot = document.createElement("button");
-      dot.type = "button";
-      dot.className = "projects-carousel__dot";
-      dot.setAttribute("aria-label", `Ir para pagina ${index + 1}`);
-      dot.addEventListener("click", () => {
-        setPage(index);
-      });
-      dotsContainer.append(dot);
-      return dot;
-    });
-  };
-
   const updateCarouselState = () => {
     currentPage = getPageFromScroll();
-    rebuildDots();
-
-    if (currentPageTarget) {
-      currentPageTarget.textContent = formatCarouselNumber(currentPage + 1);
-    }
-
-    if (totalPageTarget) {
-      totalPageTarget.textContent = formatCarouselNumber(getPageCount());
-    }
-
     prevButton.disabled = currentPage === 0;
     nextButton.disabled = currentPage >= getPageCount() - 1;
-
-    dots.forEach((dot, index) => {
-      const isActive = index === currentPage;
-      dot.classList.toggle("is-active", isActive);
-      dot.setAttribute("aria-pressed", String(isActive));
-    });
   };
 
   const syncCarouselLayout = () => {
-    rebuildDots();
     setPage(currentPage, "auto");
   };
 

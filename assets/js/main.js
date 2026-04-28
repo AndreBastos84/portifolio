@@ -12,6 +12,18 @@ const yearTarget = document.getElementById("current-year");
 const contactForm = document.getElementById("contact-form");
 const formStatus = document.getElementById("form-status");
 const carousels = document.querySelectorAll("[data-carousel]");
+const modalTriggers = document.querySelectorAll("[data-modal-open]");
+const projectModal = document.getElementById("project-modal");
+const projectModalImage = projectModal?.querySelector(".project-modal__image");
+const projectModalTitle = projectModal?.querySelector(".project-modal__title");
+const projectModalStack = projectModal?.querySelector("[data-modal-stack]");
+const projectModalStatus = projectModal?.querySelector("[data-modal-status]");
+const projectModalType = projectModal?.querySelector("[data-modal-type]");
+const projectModalDescription = projectModal?.querySelector("[data-modal-description]");
+const projectModalLink = projectModal?.querySelector("[data-modal-link]");
+const projectModalPrinting = projectModal?.querySelector(".project-modal__printing");
+const projectModalCloseTargets = projectModal?.querySelectorAll("[data-modal-close]") || [];
+const projectModalCloseButton = projectModal?.querySelector(".project-modal__close");
 
 const getTopbarOffset = () => {
   if (!topbar) {
@@ -308,6 +320,167 @@ const setupCarousel = (carousel) => {
 carousels.forEach((carousel) => {
   setupCarousel(carousel);
 });
+
+if (
+  projectModal &&
+  projectModalImage &&
+  projectModalTitle &&
+  projectModalStack &&
+  projectModalStatus &&
+  projectModalType &&
+  projectModalDescription &&
+  projectModalLink &&
+  projectModalPrinting
+) {
+  let lastFocusedElement = null;
+  let printingTimeoutId = null;
+
+  const projectModalData = {
+    "project-01": {
+      type: "WEBSITE",
+      status: "ONLINE",
+      url: "assets/img/projects/full/projeto-01.webp",
+    },
+    "project-02": {
+      type: "WORDPRESS",
+      status: "ONLINE",
+      url: "assets/img/projects/full/projeto-02.webp",
+    },
+    "project-03": {
+      type: "LANDING PAGE",
+      status: "ONLINE",
+      url: "assets/img/projects/full/projeto-03.webp",
+    },
+    "project-04": {
+      type: "CONTENT HUB",
+      status: "ONLINE",
+      url: "assets/img/projects/full/projeto-04.webp",
+    },
+    "project-05": {
+      type: "SUPPORT",
+      status: "ONLINE",
+      url: "assets/img/projects/full/projeto-05.webp",
+    },
+    "project-06": {
+      type: "WEBSITE",
+      status: "ONLINE",
+      url: "assets/img/projects/full/projeto-06.webp",
+    },
+  };
+
+  const buildProjectAssetName = (modalId) => modalId.replace(/^project-/, "projeto-");
+  const buildProjectImagePath = (modalId) =>
+    `assets/img/projects/full/${buildProjectAssetName(modalId)}.webp`;
+
+  const clearPrintingTimeout = () => {
+    if (printingTimeoutId) {
+      window.clearTimeout(printingTimeoutId);
+      printingTimeoutId = null;
+    }
+  };
+
+  const closeProjectModal = () => {
+    clearPrintingTimeout();
+    projectModal.classList.remove("is-active", "is-printing");
+    projectModal.hidden = true;
+    document.body.classList.remove("is-modal-open");
+    projectModalImage.setAttribute("src", "");
+    projectModalImage.setAttribute("alt", "");
+    projectModalTitle.textContent = "Nome do Projeto";
+    projectModalStack.textContent = "";
+    projectModalStatus.textContent = "";
+    projectModalType.textContent = "";
+    projectModalDescription.textContent = "";
+    projectModalLink.setAttribute("href", "#");
+
+    if (lastFocusedElement instanceof HTMLElement) {
+      lastFocusedElement.focus();
+    }
+  };
+
+  const openProjectModal = (modalId, trigger) => {
+    const card = trigger.closest(".project-card");
+    const title = card?.querySelector("h3")?.textContent?.trim() || "Preview do projeto";
+    const description =
+      Array.from(card?.querySelectorAll("p") || []).find(
+        (paragraph) => !paragraph.classList.contains("project-card__index"),
+      )?.textContent?.trim() || "";
+    const stack = Array.from(card?.querySelectorAll(".project-card__tags li") || [])
+      .map((item) => item.textContent?.trim())
+      .filter(Boolean)
+      .join(" • ");
+    const metadata = projectModalData[modalId] || {
+      type: "WEBSITE",
+      status: "ONLINE",
+      url: buildProjectImagePath(modalId),
+    };
+
+    lastFocusedElement = trigger instanceof HTMLElement ? trigger : document.activeElement;
+
+    clearPrintingTimeout();
+    projectModal.classList.remove("is-active");
+    projectModal.classList.add("is-printing");
+    projectModalTitle.textContent = title;
+    projectModalStack.textContent = stack || "HTML • CSS • JS";
+    projectModalStatus.textContent = metadata.status;
+    projectModalType.textContent = metadata.type;
+    projectModalDescription.textContent = description;
+    projectModalLink.setAttribute("href", metadata.url);
+    projectModalImage.setAttribute("src", buildProjectImagePath(modalId));
+    projectModalImage.setAttribute("alt", title);
+    projectModal.hidden = false;
+    document.body.classList.add("is-modal-open");
+
+    window.requestAnimationFrame(() => {
+      projectModal.classList.add("is-active");
+    });
+
+    printingTimeoutId = window.setTimeout(() => {
+      projectModal.classList.remove("is-printing");
+      projectModalCloseButton?.focus();
+    }, 300);
+  };
+
+  modalTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const modalId = trigger.getAttribute("data-modal-open");
+
+      if (!modalId) {
+        return;
+      }
+
+      openProjectModal(modalId, trigger);
+    });
+
+    if (trigger.tagName !== "BUTTON") {
+      trigger.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") {
+          return;
+        }
+
+        event.preventDefault();
+
+        const modalId = trigger.getAttribute("data-modal-open");
+
+        if (!modalId) {
+          return;
+        }
+
+        openProjectModal(modalId, trigger);
+      });
+    }
+  });
+
+  projectModalCloseTargets.forEach((target) => {
+    target.addEventListener("click", closeProjectModal);
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !projectModal.hidden) {
+      closeProjectModal();
+    }
+  });
+}
 
 if (contactForm && formStatus) {
   contactForm.addEventListener("submit", async (event) => {

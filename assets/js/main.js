@@ -2,6 +2,7 @@ const root = document.documentElement;
 const topbar = document.querySelector(".topbar");
 const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".nav");
+const hashLinks = document.querySelectorAll('a[href^="#"]');
 const navLinks = document.querySelectorAll('.nav a[href^="#"]');
 const MOBILE_NAV_BREAKPOINT = 1167;
 const sections = Array.from(navLinks)
@@ -94,43 +95,34 @@ if (menuToggle && nav) {
     nav.classList.toggle("is-open");
     updateTopbarOffset();
   });
+}
 
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const href = link.getAttribute("href");
-      const target = href ? document.querySelector(href) : null;
+hashLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const href = link.getAttribute("href");
+    const target = href ? document.querySelector(href) : null;
 
-      if (!target) {
-        return;
-      }
+    if (!target) {
+      return;
+    }
 
-      event.preventDefault();
+    event.preventDefault();
 
-      if (window.innerWidth <= MOBILE_NAV_BREAKPOINT) {
+    if (link.closest(".nav") && menuToggle && nav && window.innerWidth <= MOBILE_NAV_BREAKPOINT) {
+      menuToggle.setAttribute("aria-expanded", "false");
+      nav.classList.remove("is-open");
+    }
+
+    window.requestAnimationFrame(() => {
+      if (link.closest(".nav") && menuToggle && nav && window.innerWidth <= MOBILE_NAV_BREAKPOINT) {
         menuToggle.setAttribute("aria-expanded", "false");
         nav.classList.remove("is-open");
       }
 
-      window.requestAnimationFrame(() => {
-        scrollToTarget(target);
-      });
-    });
-  });
-} else {
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const href = link.getAttribute("href");
-      const target = href ? document.querySelector(href) : null;
-
-      if (!target) {
-        return;
-      }
-
-      event.preventDefault();
       scrollToTarget(target);
     });
   });
-}
+});
 
 const revealObserver = new IntersectionObserver(
   (entries, observer) => {

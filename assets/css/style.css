@@ -523,6 +523,7 @@ article[id] {
 
 .section-block {
   display: grid;
+  align-content: start;
   gap: 18px;
 }
 
@@ -1229,7 +1230,7 @@ article[id] {
   .timeline__list {
     grid-template-columns: 1fr;
     padding-top: 0;
-    padding-left: 18px;
+    padding-left: 1px;
   }
 
   .timeline__list::before {

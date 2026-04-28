@@ -800,7 +800,7 @@ article[id] {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 16px;
-  padding-top: 28px;
+  padding-top: 9px;
   padding-left: 0;
 }
 
@@ -817,7 +817,7 @@ article[id] {
 .timeline__item {
   position: relative;
   padding: 24px 18px 18px;
-  border: 1px solid rgba(163, 255, 123, 0.16);
+  border: 0;
   background: rgba(6, 15, 6, 0.68);
 }
 
@@ -830,7 +830,7 @@ article[id] {
   height: 12px;
   border: 1px solid var(--line-bright);
   border-radius: 50%;
-  background: var(--bg);
+  background: var(--line-bright);
   box-shadow: 0 0 0 4px rgba(10, 22, 10, 1);
 }
 
@@ -860,6 +860,7 @@ article[id] {
 
 .timeline__item p {
   margin: 0;
+  font-size: 0.88rem;
   line-height: 1.75;
 }
 

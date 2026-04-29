@@ -2,6 +2,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   min-height: 30px;
   padding: 0.25rem 0.5rem;
   border: 1px solid rgba(106, 255, 77, 0.16);
@@ -21,6 +22,66 @@
     border-color 160ms ease,
     background-color 160ms ease,
     box-shadow 160ms ease;
+}
+
+.topbar__mode-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar__mode-tooltip {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  left: auto;
+  z-index: 24;
+  display: block;
+  width: min(260px, calc(100vw - 24px));
+  min-width: 220px;
+  padding: 12px 14px;
+  border: 1px solid rgba(106, 255, 77, 0.3);
+  border-radius: 2px;
+  background: rgba(3, 10, 3, 0.94);
+  box-shadow:
+    0 0 0 1px rgba(106, 255, 77, 0.08),
+    0 12px 28px rgba(0, 0, 0, 0.32);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-transform: none;
+  white-space: normal;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(var(--dev-mode-tooltip-shift-x, 0px), -4px);
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease,
+    visibility 0s linear 200ms;
+}
+
+.topbar__mode-tooltip-line {
+  position: absolute;
+  top: -14px;
+  right: 18px;
+  width: 0;
+  height: 14px;
+  border-left: 1px dashed rgba(106, 255, 77, 0.66);
+  opacity: 0.78;
+}
+
+.topbar__mode:hover .topbar__mode-tooltip,
+.topbar__mode.is-tooltip-intro-visible .topbar__mode-tooltip,
+.topbar__mode:focus-visible .topbar__mode-tooltip,
+.topbar__mode:focus-within .topbar__mode-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(var(--dev-mode-tooltip-shift-x, 0px), 0);
+  transition-delay: 0s;
 }
 
 .topbar__mode:hover {
@@ -319,6 +380,9 @@ body.is-modal-open .dev-note {
 }
 
 @media (max-width: 760px) {
+  .topbar__mode-tooltip {
+    display: none;
+  }
 
   .dev-note {
     --dev-note-gap: 12px;

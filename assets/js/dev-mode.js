@@ -4,9 +4,11 @@
   const MAX_MOBILE_NOTES = 5;
   const VIEWPORT_MARGIN_DESKTOP = 16;
   const VIEWPORT_MARGIN_MOBILE = 12;
+  const TOOLTIP_INTRO_DURATION = 3000;
   const POSITION_CLASSES = ["dev-note--right", "dev-note--left", "dev-note--top", "dev-note--bottom"];
   const EDGE_CLASSES = ["dev-note-edge-left", "dev-note-edge-right", "dev-note--mobile", "is-hidden"];
   const stateByKey = new Map();
+  let tooltipIntroTimeoutId = null;
 
   const getNotesData = () =>
     window.DEV_NOTES && typeof window.DEV_NOTES === "object" ? window.DEV_NOTES : {};
@@ -14,6 +16,76 @@
   const isMobileViewport = () => window.innerWidth <= MOBILE_BREAKPOINT;
   const getViewportMargin = () =>
     isMobileViewport() ? VIEWPORT_MARGIN_MOBILE : VIEWPORT_MARGIN_DESKTOP;
+
+  const clearTooltipIntroTimeout = () => {
+    if (!tooltipIntroTimeoutId) {
+      return;
+    }
+
+    window.clearTimeout(tooltipIntroTimeoutId);
+    tooltipIntroTimeoutId = null;
+  };
+
+  const hideToggleTooltipIntro = () => {
+    const toggle = document.querySelector("[data-dev-mode-toggle]");
+
+    if (!(toggle instanceof HTMLElement)) {
+      return;
+    }
+
+    toggle.classList.remove("is-tooltip-intro-visible");
+  };
+
+  const showToggleTooltipIntro = () => {
+    const toggle = document.querySelector("[data-dev-mode-toggle]");
+
+    if (!(toggle instanceof HTMLElement) || isMobileViewport()) {
+      hideToggleTooltipIntro();
+      return;
+    }
+
+    clearTooltipIntroTimeout();
+    syncToggleTooltipPosition();
+    toggle.classList.add("is-tooltip-intro-visible");
+
+    tooltipIntroTimeoutId = window.setTimeout(() => {
+      hideToggleTooltipIntro();
+      tooltipIntroTimeoutId = null;
+    }, TOOLTIP_INTRO_DURATION);
+  };
+
+  const syncToggleTooltipPosition = () => {
+    const toggle = document.querySelector("[data-dev-mode-toggle]");
+    const tooltip = toggle?.querySelector(".topbar__mode-tooltip");
+
+    if (!(toggle instanceof HTMLElement) || !(tooltip instanceof HTMLElement)) {
+      return;
+    }
+
+    if (isMobileViewport()) {
+      hideToggleTooltipIntro();
+      toggle.style.setProperty("--dev-mode-tooltip-shift-x", "0px");
+      return;
+    }
+
+    const margin = getViewportMargin();
+    const rect = tooltip.getBoundingClientRect();
+
+    if (!rect.width) {
+      toggle.style.setProperty("--dev-mode-tooltip-shift-x", "0px");
+      return;
+    }
+
+    let shiftX = 0;
+
+    if (rect.left < margin) {
+      shiftX = margin - rect.left;
+    } else if (rect.right > window.innerWidth - margin) {
+      shiftX = window.innerWidth - margin - rect.right;
+    }
+
+    toggle.style.setProperty("--dev-mode-tooltip-shift-x", `${Math.round(shiftX)}px`);
+  };
 
   const getUrlDevState = () => {
     try {
@@ -36,13 +108,22 @@
 
   const updateToggleState = (enabled) => {
     const toggle = document.querySelector("[data-dev-mode-toggle]");
+    const label = toggle?.querySelector(".topbar__mode-label");
 
     if (!toggle) {
       return;
     }
 
     toggle.setAttribute("aria-pressed", String(enabled));
+
+    if (label) {
+      label.textContent = enabled ? "[ MODO DEV: ON ]" : "[ MODO DEV: OFF ]";
+      window.requestAnimationFrame(syncToggleTooltipPosition);
+      return;
+    }
+
     toggle.textContent = enabled ? "[ MODO DEV: ON ]" : "[ MODO DEV: OFF ]";
+    window.requestAnimationFrame(syncToggleTooltipPosition);
   };
 
   const createNoteElement = (key, config) => {
@@ -290,10 +371,21 @@
       urlState === null ? document.body.classList.contains(DEV_MODE_CLASS) : urlState;
 
     setDevMode(initialState);
+    syncToggleTooltipPosition();
+    showToggleTooltipIntro();
 
-    window.addEventListener("resize", ensureNotes);
-    window.addEventListener("orientationchange", ensureNotes);
-    window.addEventListener("load", ensureNotes);
+    window.addEventListener("resize", () => {
+      ensureNotes();
+      syncToggleTooltipPosition();
+    });
+    window.addEventListener("orientationchange", () => {
+      ensureNotes();
+      syncToggleTooltipPosition();
+    });
+    window.addEventListener("load", () => {
+      ensureNotes();
+      syncToggleTooltipPosition();
+    });
 
     if (document.fonts && typeof document.fonts.ready?.then === "function") {
       document.fonts.ready.then(() => {

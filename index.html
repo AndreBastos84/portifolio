@@ -103,8 +103,17 @@
             type="button"
             data-dev-mode-toggle
             aria-pressed="false"
+            aria-describedby="dev-mode-tooltip"
           >
-            [ MODO DEV: OFF ]
+            <span class="topbar__mode-label">[ MODO DEV: OFF ]</span>
+            <span
+              class="topbar__mode-tooltip"
+              id="dev-mode-tooltip"
+              role="tooltip"
+            >
+              <span class="topbar__mode-tooltip-line" aria-hidden="true"></span>
+              Explore os bastidores tecnicos deste projeto.
+            </span>
           </button>
 
           <div class="topbar__status">
@@ -851,7 +860,9 @@
         aria-labelledby="modal-title"
       >
         <div class="project-modal__printing" aria-live="polite">
-          PRINTING REPORT...
+          GERANDO RELATÓRIO...<br/>
+          coletando dados do projeto...<br/>
+          estruturando informações...
         </div>
 
         <div class="project-modal__content">
@@ -860,7 +871,7 @@
           </button>
 
           <div class="project-modal__header">
-            <p>SYSTEM OUTPUT REPORT</p>
+            <p>RELATÓRIO DO PROJETO</p>
             <span>PROJECT.LOG</span>
           </div>
 

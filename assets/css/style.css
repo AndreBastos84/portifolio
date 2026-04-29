@@ -203,6 +203,7 @@ article[id] {
 }
 
 .topbar__mode {
+  position: relative;
   color: var(--text-soft);
   font-size: 0.75rem;
   letter-spacing: 0.16em;

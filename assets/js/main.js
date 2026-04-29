@@ -5,8 +5,6 @@ const nav = document.querySelector(".nav");
 const hashLinks = document.querySelectorAll('a[href^="#"]');
 const navLinks = document.querySelectorAll('.nav a[href^="#"]');
 const MOBILE_NAV_BREAKPOINT = 1167;
-const MODAL_PRINTING_DELAY = 650;
-const projectsData = window.PROJECTS_DATA || {};
 const sections = Array.from(navLinks)
   .map((link) => document.querySelector(link.getAttribute("href")))
   .filter(Boolean);
@@ -15,19 +13,6 @@ const yearTarget = document.getElementById("current-year");
 const contactForm = document.getElementById("contact-form");
 const formStatus = document.getElementById("form-status");
 const carousels = document.querySelectorAll("[data-carousel]");
-const modalTriggers = document.querySelectorAll("[data-modal-open]");
-const projectModal = document.getElementById("project-modal");
-const projectModalScreen = projectModal?.querySelector(".project-modal__screen");
-const projectModalImage = projectModal?.querySelector(".project-modal__image");
-const projectModalTitle = projectModal?.querySelector(".project-modal__title");
-const projectModalStack = projectModal?.querySelector("[data-modal-stack]");
-const projectModalStatus = projectModal?.querySelector("[data-modal-status]");
-const projectModalType = projectModal?.querySelector("[data-modal-type]");
-const projectModalDescription = projectModal?.querySelector("[data-modal-description]");
-const projectModalLink = projectModal?.querySelector("[data-modal-link]");
-const projectModalPrinting = projectModal?.querySelector(".project-modal__printing");
-const projectModalCloseTargets = projectModal?.querySelectorAll("[data-modal-close]") || [];
-const projectModalCloseButton = projectModal?.querySelector(".project-modal__close");
 
 const getTopbarOffset = () => {
   if (!topbar) {
@@ -318,150 +303,6 @@ const setupCarousel = (carousel) => {
 carousels.forEach((carousel) => {
   setupCarousel(carousel);
 });
-
-if (
-  projectModal &&
-  projectModalScreen &&
-  projectModalImage &&
-  projectModalTitle &&
-  projectModalStack &&
-  projectModalStatus &&
-  projectModalType &&
-  projectModalDescription &&
-  projectModalLink &&
-  projectModalPrinting
-) {
-  let lastFocusedElement = null;
-  let printingTimeoutId = null;
-
-  const DEFAULT_PROJECT_MODAL_DATA = {
-    title: "Preview do projeto",
-    description: "",
-    stack: "HTML \u2022 CSS \u2022 JS",
-    type: "WEBSITE",
-    status: "ONLINE",
-    image: "",
-    link: "#",
-  };
-
-  projectModalImage.decoding = "async";
-
-  const clearPrintingTimeout = () => {
-    if (printingTimeoutId) {
-      window.clearTimeout(printingTimeoutId);
-      printingTimeoutId = null;
-    }
-  };
-
-  const closeProjectModal = () => {
-    clearPrintingTimeout();
-    projectModal.classList.remove("is-active", "is-printing");
-    projectModal.hidden = true;
-    document.body.classList.remove("is-modal-open");
-    projectModalScreen.hidden = false;
-    projectModalImage.removeAttribute("src");
-    projectModalImage.setAttribute("alt", "");
-    projectModalTitle.textContent = "Nome do Projeto";
-    projectModalStack.textContent = "";
-    projectModalStatus.textContent = "";
-    projectModalType.textContent = "";
-    projectModalDescription.textContent = "";
-    projectModalLink.setAttribute("href", "#");
-
-    if (lastFocusedElement instanceof HTMLElement) {
-      lastFocusedElement.focus();
-    }
-  };
-
-  const openProjectModal = (modalId, trigger) => {
-    const data = {
-      ...DEFAULT_PROJECT_MODAL_DATA,
-      ...(projectsData[modalId] || {}),
-    };
-    const title = data.title || DEFAULT_PROJECT_MODAL_DATA.title;
-    const description = data.description || DEFAULT_PROJECT_MODAL_DATA.description;
-    const stack = data.stack || DEFAULT_PROJECT_MODAL_DATA.stack;
-    const status = data.status || DEFAULT_PROJECT_MODAL_DATA.status;
-    const type = data.type || DEFAULT_PROJECT_MODAL_DATA.type;
-    const image = data.image || "";
-    const link = data.link || image || "#";
-
-    lastFocusedElement = trigger instanceof HTMLElement ? trigger : document.activeElement;
-
-    clearPrintingTimeout();
-    projectModal.classList.remove("is-active");
-    projectModal.classList.add("is-printing");
-    projectModalTitle.textContent = title;
-    projectModalStack.textContent = stack;
-    projectModalStatus.textContent = status;
-    projectModalType.textContent = type;
-    projectModalDescription.textContent = description;
-    projectModalLink.setAttribute("href", link);
-
-    if (image) {
-      projectModalScreen.hidden = false;
-      projectModalImage.setAttribute("src", image);
-      projectModalImage.setAttribute("alt", title);
-    } else {
-      projectModalScreen.hidden = true;
-      projectModalImage.removeAttribute("src");
-      projectModalImage.setAttribute("alt", "");
-      console.warn(`Projeto sem imagem configurada para modal: ${modalId}`);
-    }
-
-    projectModal.hidden = false;
-    document.body.classList.add("is-modal-open");
-
-    window.requestAnimationFrame(() => {
-      projectModal.classList.add("is-active");
-    });
-
-    printingTimeoutId = window.setTimeout(() => {
-      projectModal.classList.remove("is-printing");
-      projectModalCloseButton?.focus();
-    }, MODAL_PRINTING_DELAY);
-  };
-
-  modalTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      const modalId = trigger.getAttribute("data-modal-open");
-
-      if (!modalId) {
-        return;
-      }
-
-      openProjectModal(modalId, trigger);
-    });
-
-    if (trigger.tagName !== "BUTTON") {
-      trigger.addEventListener("keydown", (event) => {
-        if (event.key !== "Enter" && event.key !== " ") {
-          return;
-        }
-
-        event.preventDefault();
-
-        const modalId = trigger.getAttribute("data-modal-open");
-
-        if (!modalId) {
-          return;
-        }
-
-        openProjectModal(modalId, trigger);
-      });
-    }
-  });
-
-  projectModalCloseTargets.forEach((target) => {
-    target.addEventListener("click", closeProjectModal);
-  });
-
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !projectModal.hidden) {
-      closeProjectModal();
-    }
-  });
-}
 
 if (contactForm && formStatus) {
   contactForm.addEventListener("submit", async (event) => {

@@ -335,7 +335,7 @@ article[id] {
 }
 
 .hero__name {
-  max-width: 13ch;
+  max-width: 9ch;
   margin: 22px 0 14px;
   color: var(--text);
   font-size: clamp(2rem, 5vw, 4.15rem);

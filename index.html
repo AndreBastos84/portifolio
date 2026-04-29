@@ -71,11 +71,12 @@
     </script>
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/modal-paper.css" />
+    <link rel="stylesheet" href="assets/css/dev-mode.css" />
   </head>
   <body>
     <div class="site-shell">
       <header class="topbar" data-reveal>
-        <div class="brand">
+        <div class="brand" data-dev-note="meta-tags">
           <img
             class="brand__logo"
             src="assets/img/brand/logo.svg"
@@ -97,7 +98,14 @@
             MENU
           </button>
 
-          <div class="topbar__mode">[ MODO DEV: ON ]</div>
+          <button
+            class="topbar__mode"
+            type="button"
+            data-dev-mode-toggle
+            aria-pressed="false"
+          >
+            [ MODO DEV: OFF ]
+          </button>
 
           <div class="topbar__status">
             <span class="topbar__status-dot" aria-hidden="true"></span>
@@ -105,7 +113,12 @@
           </div>
         </div>
 
-        <nav class="nav" id="site-nav" aria-label="Navegacao principal">
+        <nav
+          class="nav"
+          id="site-nav"
+          aria-label="Navegacao principal"
+          data-dev-note="semantic-nav"
+        >
           <a href="#inicio">[01_INÍCIO]</a>
           <a href="#sobre">[02_SOBRE]</a>
           <a href="#servicos">[03_SERVICOS]</a>
@@ -119,7 +132,7 @@
         <section class="hero" aria-labelledby="hero-name" id="inicio">
           <article class="hero__copy panel" data-reveal>
             <p class="terminal-command">C:\PORTFOLIO> INICIAR.EXE</p>
-            <h1 class="hero__name" id="hero-name">
+            <h1 class="hero__name" id="hero-name" data-dev-note="h1-unique">
               ANDRE BASTOS
             </h1>
             <p class="hero__title">DESENVOLVEDOR WEB FULL STACK</p>
@@ -127,7 +140,11 @@
               Soluções digitais com foco em performance, clareza e resultado. Desenvolvimento web para negócios que precisam de presença profissional, manutenção confiável e evolução contínua.
             </p>
 
-            <ul class="hero-tags" aria-label="Tecnologias principais">
+            <ul
+              class="hero-tags"
+              aria-label="Tecnologias principais"
+              data-dev-note="main-stack"
+            >
               <li>
                 <svg class="icon icon-sm" aria-hidden="true">
                   <use href="assets/icons/sprite.svg#icon-html"></use>
@@ -160,14 +177,21 @@
               </li>
             </ul>
 
-            <p class="hero-workflow" aria-label="Workflow principal">
+            <p
+              class="hero-workflow"
+              aria-label="Workflow principal"
+              data-dev-note="workflow"
+            >
               <span class="hero-workflow__prompt" aria-hidden="true">&gt;</span>
               <span>WORKFLOW: FIGMA MCP • CODEX • IA ASSISTIDA</span>
             </p>
 
             <div class="button-row">
               <a class="button" href="#projetos">VER PROJETOS</a>
-              <a class="button button--ghost" href="#contato">
+              <a
+                class="button button--ghost"
+                href="#contato"
+              >
                 SOLICITAR ORCAMENTO
               </a>
             </div>
@@ -225,7 +249,7 @@
 
             <div class="about-grid">
               <div class="about-copy">
-                <div class="terminal-art">
+                <div class="terminal-art" data-dev-note="optimized-image">
                   <img
                     class="terminal-art__image"
                     src="assets/img/profile/andre1.webp"
@@ -300,7 +324,7 @@
               <small>C:\SERVICOS\LISTA.SYS</small>
             </h2>
 
-            <div class="service-list">
+            <div class="service-list" data-dev-note="clear-services">
               <article class="service-card">
                 <div class="service-card__head">
                   <div class="service-card__title">
@@ -331,7 +355,7 @@
                 </p>
               </article>
 
-              <article class="service-card">
+              <article class="service-card" data-dev-note="wordpress-autonomy">
                 <div class="service-card__head">
                   <div class="service-card__title">
                     <svg class="icon" aria-hidden="true">
@@ -385,7 +409,7 @@
             <small>C:\PORTFOLIO\PROJETOS.LOG</small>
           </h2>
 
-          <div class="projects-carousel" data-carousel>
+          <div class="projects-carousel" data-carousel data-dev-note="light-carousel">
             <div class="projects-carousel__toolbar">
               <div class="projects-carousel__controls">
                 <button class="carousel-button" type="button" data-carousel-prev>
@@ -471,6 +495,7 @@
                     class="project-card__preview button button--ghost"
                     type="button"
                     data-modal-open="project-02"
+                    data-dev-note="quick-modal"
                   >
                     VER PREVIEW
                   </button>
@@ -758,7 +783,12 @@
             </div>
           </article>
 
-          <form class="contact-form panel" id="contact-form" data-reveal>
+          <form
+            class="contact-form panel"
+            id="contact-form"
+            data-reveal
+            data-dev-note="direct-form"
+          >
             <h2 class="panel__heading">
               <span>// PREPARAR BRIEFING</span>
               <small>C:\CONTATO\BRIEFING.MSG</small>
@@ -869,5 +899,7 @@
 
     <script src="assets/js/projects-data.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/dev-notes.js"></script>
+    <script src="assets/js/dev-mode.js"></script>
   </body>
 </html>

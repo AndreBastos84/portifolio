@@ -136,13 +136,14 @@ article[id] {
   background: linear-gradient(180deg, rgba(10, 22, 10, 0.92) 0%, rgba(4, 9, 4, 0.96) 100%);
   box-shadow: 0 0 0 1px rgba(163, 255, 123, 0.04), 0 10px 30px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(163, 255, 123, 0.05);
   backdrop-filter: blur(10px);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .topbar::before {
   content: "";
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   background: linear-gradient(180deg, rgba(163, 255, 123, 0.04), transparent 28%), linear-gradient(180deg, rgba(255, 255, 255, 0.015) 0, rgba(255, 255, 255, 0.015) 1px, transparent 1px, transparent 4px);
   opacity: 0.45;
   pointer-events: none;
@@ -279,7 +280,7 @@ article[id] {
 
 .panel {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   padding: var(--panel-padding);
   border: var(--border-soft);
   border-radius: var(--radius);
@@ -291,6 +292,7 @@ article[id] {
   content: "";
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   background: linear-gradient(180deg, rgba(163, 255, 123, 0.06), transparent 34%);
   pointer-events: none;
 }
@@ -390,6 +392,8 @@ article[id] {
 }
 
 .hero-workflow {
+  position: relative;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;

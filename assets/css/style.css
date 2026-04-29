@@ -1277,16 +1277,22 @@ article[id] {
     max-height: 0;
     min-width: min(100%, 340px);
     overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     margin-top: 0;
     padding-top: 0;
     border-top: 0;
     flex-direction: column;
     align-items: flex-end;
     gap: 10px;
-    transition: max-height var(--transition), margin-top var(--transition), padding-top var(--transition);
+    transition: opacity var(--transition), visibility 0s linear var(--transition), max-height var(--transition), margin-top var(--transition), padding-top var(--transition);
   }
   .nav.is-open {
     max-height: 360px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
     margin-top: 12px;
     padding-top: 12px;
     border-top: 1px solid rgba(163, 255, 123, 0.12);

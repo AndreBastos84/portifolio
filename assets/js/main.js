@@ -13,6 +13,7 @@ const yearTarget = document.getElementById("current-year");
 const contactForm = document.getElementById("contact-form");
 const formStatus = document.getElementById("form-status");
 const carousels = document.querySelectorAll("[data-carousel]");
+let wasMobileNav = window.innerWidth <= MOBILE_NAV_BREAKPOINT;
 
 const getTopbarOffset = () => {
   if (!topbar) {
@@ -69,6 +70,21 @@ const scrollToTarget = (target, updateHash = true) => {
   }
 
   window.requestAnimationFrame(setActiveLink);
+};
+
+const syncNavigationState = () => {
+  if (!menuToggle || !nav) {
+    return;
+  }
+
+  const isMobileNav = window.innerWidth <= MOBILE_NAV_BREAKPOINT;
+
+  if (isMobileNav !== wasMobileNav || !isMobileNav) {
+    menuToggle.setAttribute("aria-expanded", "false");
+    nav.classList.remove("is-open");
+  }
+
+  wasMobileNav = isMobileNav;
 };
 
 if (yearTarget) {
@@ -153,11 +169,13 @@ window.addEventListener(
 );
 
 window.addEventListener("resize", () => {
+  syncNavigationState();
   updateTopbarOffset();
   setActiveLink();
 });
 
 window.addEventListener("load", () => {
+  syncNavigationState();
   updateTopbarOffset();
   setActiveLink();
 

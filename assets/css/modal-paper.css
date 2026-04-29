@@ -185,7 +185,7 @@
 .project-modal__section-title {
   margin: 0 0 6px;
   color: #3f6f38;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -193,8 +193,8 @@
 .project-modal__section-text {
   margin: 0;
   color: #2e2a1f;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.7;
 }
 
 @media (max-width: 760px) {

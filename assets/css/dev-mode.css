@@ -380,8 +380,20 @@ body.is-modal-open .dev-note {
 }
 
 @media (max-width: 760px) {
+  .topbar__mode {
+    display: none;
+  }
+
   .topbar__mode-tooltip {
     display: none;
+  }
+
+  body.dev-mode-on .dev-note {
+    display: none !important;
+  }
+
+  body.dev-mode-on [data-dev-note="optimized-image"] {
+    overflow: hidden;
   }
 
   .dev-note {

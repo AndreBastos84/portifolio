@@ -5,6 +5,8 @@ const nav = document.querySelector(".nav");
 const hashLinks = document.querySelectorAll('a[href^="#"]');
 const navLinks = document.querySelectorAll('.nav a[href^="#"]');
 const MOBILE_NAV_BREAKPOINT = 1167;
+const MODAL_PRINTING_DELAY = 650;
+const projectsData = window.PROJECTS_DATA || {};
 const sections = Array.from(navLinks)
   .map((link) => document.querySelector(link.getAttribute("href")))
   .filter(Boolean);
@@ -15,6 +17,7 @@ const formStatus = document.getElementById("form-status");
 const carousels = document.querySelectorAll("[data-carousel]");
 const modalTriggers = document.querySelectorAll("[data-modal-open]");
 const projectModal = document.getElementById("project-modal");
+const projectModalScreen = projectModal?.querySelector(".project-modal__screen");
 const projectModalImage = projectModal?.querySelector(".project-modal__image");
 const projectModalTitle = projectModal?.querySelector(".project-modal__title");
 const projectModalStack = projectModal?.querySelector("[data-modal-stack]");
@@ -215,7 +218,10 @@ const setupCarousel = (carousel) => {
       1,
       Math.min(
         cards.length,
-        Number.parseInt(window.getComputedStyle(carousel).getPropertyValue("--projects-per-view"), 10) || 1,
+        Number.parseInt(
+          window.getComputedStyle(carousel).getPropertyValue("--projects-per-view"),
+          10,
+        ) || 1,
       ),
     );
 
@@ -315,6 +321,7 @@ carousels.forEach((carousel) => {
 
 if (
   projectModal &&
+  projectModalScreen &&
   projectModalImage &&
   projectModalTitle &&
   projectModalStack &&
@@ -327,42 +334,17 @@ if (
   let lastFocusedElement = null;
   let printingTimeoutId = null;
 
-  const projectModalData = {
-    "project-01": {
-      type: "WEBSITE",
-      status: "ONLINE",
-      url: "assets/img/projects/full/projeto-01.webp",
-    },
-    "project-02": {
-      type: "WORDPRESS",
-      status: "ONLINE",
-      url: "assets/img/projects/full/projeto-02.webp",
-    },
-    "project-03": {
-      type: "LANDING PAGE",
-      status: "ONLINE",
-      url: "assets/img/projects/full/projeto-03.webp",
-    },
-    "project-04": {
-      type: "CONTENT HUB",
-      status: "ONLINE",
-      url: "assets/img/projects/full/projeto-04.webp",
-    },
-    "project-05": {
-      type: "SUPPORT",
-      status: "ONLINE",
-      url: "assets/img/projects/full/projeto-05.webp",
-    },
-    "project-06": {
-      type: "WEBSITE",
-      status: "ONLINE",
-      url: "assets/img/projects/full/projeto-06.webp",
-    },
+  const DEFAULT_PROJECT_MODAL_DATA = {
+    title: "Preview do projeto",
+    description: "",
+    stack: "HTML \u2022 CSS \u2022 JS",
+    type: "WEBSITE",
+    status: "ONLINE",
+    image: "",
+    link: "#",
   };
 
-  const buildProjectAssetName = (modalId) => modalId.replace(/^project-/, "projeto-");
-  const buildProjectImagePath = (modalId) =>
-    `assets/img/projects/full/${buildProjectAssetName(modalId)}.webp`;
+  projectModalImage.decoding = "async";
 
   const clearPrintingTimeout = () => {
     if (printingTimeoutId) {
@@ -376,7 +358,8 @@ if (
     projectModal.classList.remove("is-active", "is-printing");
     projectModal.hidden = true;
     document.body.classList.remove("is-modal-open");
-    projectModalImage.setAttribute("src", "");
+    projectModalScreen.hidden = false;
+    projectModalImage.removeAttribute("src");
     projectModalImage.setAttribute("alt", "");
     projectModalTitle.textContent = "Nome do Projeto";
     projectModalStack.textContent = "";
@@ -391,21 +374,17 @@ if (
   };
 
   const openProjectModal = (modalId, trigger) => {
-    const card = trigger.closest(".project-card");
-    const title = card?.querySelector("h3")?.textContent?.trim() || "Preview do projeto";
-    const description =
-      Array.from(card?.querySelectorAll("p") || []).find(
-        (paragraph) => !paragraph.classList.contains("project-card__index"),
-      )?.textContent?.trim() || "";
-    const stack = Array.from(card?.querySelectorAll(".project-card__tags li") || [])
-      .map((item) => item.textContent?.trim())
-      .filter(Boolean)
-      .join(" • ");
-    const metadata = projectModalData[modalId] || {
-      type: "WEBSITE",
-      status: "ONLINE",
-      url: buildProjectImagePath(modalId),
+    const data = {
+      ...DEFAULT_PROJECT_MODAL_DATA,
+      ...(projectsData[modalId] || {}),
     };
+    const title = data.title || DEFAULT_PROJECT_MODAL_DATA.title;
+    const description = data.description || DEFAULT_PROJECT_MODAL_DATA.description;
+    const stack = data.stack || DEFAULT_PROJECT_MODAL_DATA.stack;
+    const status = data.status || DEFAULT_PROJECT_MODAL_DATA.status;
+    const type = data.type || DEFAULT_PROJECT_MODAL_DATA.type;
+    const image = data.image || "";
+    const link = data.link || image || "#";
 
     lastFocusedElement = trigger instanceof HTMLElement ? trigger : document.activeElement;
 
@@ -413,13 +392,23 @@ if (
     projectModal.classList.remove("is-active");
     projectModal.classList.add("is-printing");
     projectModalTitle.textContent = title;
-    projectModalStack.textContent = stack || "HTML • CSS • JS";
-    projectModalStatus.textContent = metadata.status;
-    projectModalType.textContent = metadata.type;
+    projectModalStack.textContent = stack;
+    projectModalStatus.textContent = status;
+    projectModalType.textContent = type;
     projectModalDescription.textContent = description;
-    projectModalLink.setAttribute("href", metadata.url);
-    projectModalImage.setAttribute("src", buildProjectImagePath(modalId));
-    projectModalImage.setAttribute("alt", title);
+    projectModalLink.setAttribute("href", link);
+
+    if (image) {
+      projectModalScreen.hidden = false;
+      projectModalImage.setAttribute("src", image);
+      projectModalImage.setAttribute("alt", title);
+    } else {
+      projectModalScreen.hidden = true;
+      projectModalImage.removeAttribute("src");
+      projectModalImage.setAttribute("alt", "");
+      console.warn(`Projeto sem imagem configurada para modal: ${modalId}`);
+    }
+
     projectModal.hidden = false;
     document.body.classList.add("is-modal-open");
 
@@ -430,7 +419,7 @@ if (
     printingTimeoutId = window.setTimeout(() => {
       projectModal.classList.remove("is-printing");
       projectModalCloseButton?.focus();
-    }, 300);
+    }, MODAL_PRINTING_DELAY);
   };
 
   modalTriggers.forEach((trigger) => {

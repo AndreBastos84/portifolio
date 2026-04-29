@@ -156,7 +156,7 @@
 
 .project-modal__meta {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   margin-bottom: 18px;
   font-size: 0.78rem;
@@ -170,29 +170,31 @@
   background: rgba(255, 255, 255, 0.32);
 }
 
-.project-modal__description {
-  margin: 0 0 22px;
-  color: #111;
-  line-height: 1.8;
+.project-modal__sections {
+  display: block;
 }
 
-.project-modal__actions {
-  display: flex;
-  justify-content: flex-start;
+.project-modal__section {
+  margin-bottom: 18px;
 }
 
-.project-modal__actions .button {
-  min-width: 240px;
-  background: #111;
-  border-color: #111;
-  color: #e9e1c8;
-  box-shadow: none;
+.project-modal__section:last-child {
+  margin-bottom: 0;
 }
 
-.project-modal__actions .button:hover,
-.project-modal__actions .button:focus-visible {
-  background: #243724;
-  border-color: #243724;
+.project-modal__section-title {
+  margin: 0 0 6px;
+  color: #3f6f38;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-modal__section-text {
+  margin: 0;
+  color: #2e2a1f;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 @media (max-width: 760px) {
@@ -209,8 +211,7 @@
     grid-template-columns: 1fr;
   }
 
-  .project-modal__close,
-  .project-modal__actions .button {
+  .project-modal__close {
     width: 100%;
   }
 

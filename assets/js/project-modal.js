@@ -4,12 +4,10 @@
   const MODAL_PRINTING_DELAY = 650;
   const DEFAULT_PROJECT_MODAL_DATA = {
     title: "Preview do projeto",
-    description: "",
+    sections: [],
     stack: "HTML \u2022 CSS \u2022 JS",
     type: "WEBSITE",
-    status: "ONLINE",
     image: "",
-    link: "#",
   };
 
   const state = {
@@ -26,13 +24,10 @@
     image: null,
     title: null,
     stack: null,
-    status: null,
     type: null,
-    description: null,
-    link: null,
+    content: null,
     printing: null,
     closeButton: null,
-    closeTargets: [],
     body: document.body,
   };
 
@@ -47,13 +42,10 @@
     els.image = els.modal.querySelector(".project-modal__image");
     els.title = els.modal.querySelector(".project-modal__title");
     els.stack = els.modal.querySelector("[data-modal-stack]");
-    els.status = els.modal.querySelector("[data-modal-status]");
     els.type = els.modal.querySelector("[data-modal-type]");
-    els.description = els.modal.querySelector("[data-modal-description]");
-    els.link = els.modal.querySelector("[data-modal-link]");
+    els.content = els.modal.querySelector("[data-modal-content]");
     els.printing = els.modal.querySelector(".project-modal__printing");
     els.closeButton = els.modal.querySelector(".project-modal__close");
-    els.closeTargets = Array.from(els.modal.querySelectorAll("[data-modal-close]"));
   }
 
   function hasRequiredElements() {
@@ -63,10 +55,8 @@
         els.image &&
         els.title &&
         els.stack &&
-        els.status &&
         els.type &&
-        els.description &&
-        els.link &&
+        els.content &&
         els.printing,
     );
   }
@@ -96,10 +86,8 @@
     els.image.setAttribute("alt", "");
     els.title.textContent = "Nome do Projeto";
     els.stack.textContent = "";
-    els.status.textContent = "";
     els.type.textContent = "";
-    els.description.textContent = "";
-    els.link.setAttribute("href", "#");
+    els.content.replaceChildren();
   }
 
   function getProjectData(projectId) {
@@ -109,25 +97,61 @@
     };
   }
 
+  function createSectionElement(section) {
+    const sectionEl = document.createElement("section");
+    const titleEl = document.createElement("h3");
+    const textEl = document.createElement("p");
+
+    sectionEl.className = "project-modal__section";
+    titleEl.className = "project-modal__section-title";
+    textEl.className = "project-modal__section-text";
+
+    titleEl.textContent = section.title || "";
+    textEl.textContent = section.text || "";
+
+    sectionEl.append(titleEl, textEl);
+    return sectionEl;
+  }
+
+  function renderSections(sections) {
+    if (!(els.content instanceof HTMLElement)) {
+      return;
+    }
+
+    els.content.replaceChildren();
+
+    if (!Array.isArray(sections) || !sections.length) {
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    sections.forEach((section) => {
+      if (!section || (typeof section.title !== "string" && typeof section.text !== "string")) {
+        return;
+      }
+
+      fragment.appendChild(createSectionElement(section));
+    });
+
+    els.content.appendChild(fragment);
+  }
+
   function renderProject(data) {
     if (!hasRequiredElements()) {
       return;
     }
 
     const title = data.title || DEFAULT_PROJECT_MODAL_DATA.title;
-    const description = data.description || DEFAULT_PROJECT_MODAL_DATA.description;
     const stack = data.stack || DEFAULT_PROJECT_MODAL_DATA.stack;
-    const status = data.status || DEFAULT_PROJECT_MODAL_DATA.status;
     const type = data.type || DEFAULT_PROJECT_MODAL_DATA.type;
     const image = data.image || "";
-    const link = data.link || image || "#";
+    const sections = Array.isArray(data.sections) ? data.sections : DEFAULT_PROJECT_MODAL_DATA.sections;
 
     els.title.textContent = title;
     els.stack.textContent = stack;
-    els.status.textContent = status;
     els.type.textContent = type;
-    els.description.textContent = description;
-    els.link.setAttribute("href", link);
+    renderSections(sections);
 
     if (image) {
       els.screen.hidden = false;

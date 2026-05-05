@@ -15,10 +15,16 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="assets/img/brand/logo.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/img/brand/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/img/brand/favicon-48x48.png" sizes="48x48" type="image/png" />
+    <link rel="icon" href="assets/img/brand/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="assets/img/brand/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="shortcut icon" href="assets/img/brand/favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png" sizes="180x180" />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
+    <div id="topo" aria-hidden="true"></div>
     <div class="page-shell">
       <header class="site-header">
         <div class="container site-header__inner">
@@ -202,13 +208,7 @@
                 <article class="about-card">
                   <span class="about-card__icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M15.5 18.25V16.75C15.5 15.6454 14.6046 14.75 13.5 14.75H10.5C9.39543 14.75 8.5 15.6454 8.5 16.75V18.25M18.5 18.25V16.75C18.5 15.8174 17.8624 15.0037 17 14.75M5.5 18.25V16.75C5.5 15.8174 6.13761 15.0037 7 14.75M15 8.25C15 9.90685 13.6569 11.25 12 11.25C10.3431 11.25 9 9.90685 9 8.25C9 6.59315 10.3431 5.25 12 5.25C13.6569 5.25 15 6.59315 15 8.25ZM18 9.25C18 10.4926 16.9926 11.5 15.75 11.5C14.5074 11.5 13.5 10.4926 13.5 9.25C13.5 8.00736 14.5074 7 15.75 7C16.9926 7 18 8.00736 18 9.25ZM10.5 9.25C10.5 10.4926 9.49264 11.5 8.25 11.5C7.00736 11.5 6 10.4926 6 9.25C6 8.00736 7.00736 7 8.25 7C9.49264 7 10.5 8.00736 10.5 9.25Z"
-                        stroke="currentColor"
-                        stroke-width="1.7"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
+                      <use href="assets/icons/sprite.svg#icon-users-outline"></use>
                     </svg>
                   </span>
                   <div class="about-card__text">
@@ -268,10 +268,10 @@
                     />
                   </svg>
                 </span>
-                <h3>Sites institucionais</h3>
+                <h3>Websites</h3>
                 <p>
-                  Sites profissionais que transmitem confiança e fortalecem a
-                  presença da sua marca.
+                  Sites institucionais e comerciais desenvolvidos em WordPress,
+                  com foco em performance, SEO e gestão simples de conteúdo.
                 </p>
                 <span class="service-card__arrow" aria-hidden="true"></span>
               </article>
@@ -279,32 +279,13 @@
               <article class="service-card">
                 <span class="service-card__icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M6.75 15.75L4.75 19.25L8.25 17.25L15.5 10L14 8.5L6.75 15.75Z"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M14 8.5L15.5 7C16.3284 6.17157 17.6716 6.17157 18.5 7C19.3284 7.82843 19.3284 9.17157 18.5 10L17 11.5"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M9.75 6.25C11.25 6 12.5 5.25 13.5 4M17.75 14.25C18 12.75 18.75 11.5 20 10.5"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                    />
+                    <use href="assets/icons/sprite.svg#icon-rocket-outline"></use>
                   </svg>
                 </span>
-                <h3>Landing pages</h3>
+                <h3>Landing Pages</h3>
                 <p>
                   Páginas focadas em conversão para campanhas, lançamentos e
-                  promoções.
+                  captação de leads, com estrutura rápida e objetiva.
                 </p>
                 <span class="service-card__arrow" aria-hidden="true"></span>
               </article>
@@ -321,35 +302,24 @@
                     />
                   </svg>
                 </span>
-                <h3>Sistemas web</h3>
+                <h3>E-commerce</h3>
                 <p>
-                  Soluções personalizadas para otimizar processos e aumentar a
-                  produtividade.
+                  Lojas virtuais completas com WordPress e WooCommerce,
+                  preparadas para vendas, gestão de produtos e crescimento.
                 </p>
                 <span class="service-card__arrow" aria-hidden="true"></span>
               </article>
 
               <article class="service-card">
                 <span class="service-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M4.75 12C4.75 8.27208 7.77208 5.25 11.5 5.25C15.2279 5.25 18.25 8.27208 18.25 12C18.25 15.7279 15.2279 18.75 11.5 18.75C7.77208 18.75 4.75 15.7279 4.75 12Z"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                    />
-                    <path
-                      d="M9 8.75C9.75 8.75 10.5 9.5 10.5 10.5V13.5C10.5 14.5 9.75 15.25 9 15.25M10.5 10.75C11 9.5 12 8.75 13.25 8.75C14.65 8.75 15.5 9.8 15.5 11.5V15.25"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
+                  <svg viewBox="0 0 100 100" fill="none">
+                    <use href="assets/icons/sprite.svg#icon-screen-outline"></use>
                   </svg>
                 </span>
-                <h3>WordPress profissional</h3>
+                <h3>Front-end</h3>
                 <p>
-                  Desenvolvimento de sites e lojas virtuais com performance,
-                  SEO e fácil gestão de conteúdo.
+                  Interfaces sob medida e desenvolvimento de e-mails HTML para
+                  campanhas, automações e comunicação digital.
                 </p>
                 <span class="service-card__arrow" aria-hidden="true"></span>
               </article>
@@ -363,7 +333,7 @@
               <p class="section-eyebrow">PROJETOS</p>
               <h2 class="projects__title">
                 Projetos que
-                geram <span>impacto</span>.
+                geram&nbsp;<span>impacto.</span>
               </h2>
 
               <div class="projects__list" role="tablist" aria-label="Projetos em destaque">
@@ -491,10 +461,6 @@
                 </button>
               </div>
 
-              <a class="projects__more" href="#contato">
-                <span>Ver todos os projetos</span>
-                <span class="projects__more-icon" aria-hidden="true"></span>
-              </a>
             </aside>
 
             <article class="projects-panel" aria-live="polite">
@@ -566,7 +532,238 @@
             </article>
           </div>
         </section>
+
+        <section class="process" id="processo">
+          <div class="container process__layout">
+            <div class="process__intro">
+              <p class="section-eyebrow">COMO TRABALHO</p>
+              <h2 class="process__title">
+                Processo simples,
+                resultado <span>eficiente.</span>
+              </h2>
+            </div>
+
+            <div class="process__steps" aria-label="Etapas do processo de trabalho">
+              <article class="process-step">
+                <span class="process-step__number">01</span>
+                <span class="process-step__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M8.75 4.75H18.25C19.2165 4.75 20 5.5335 20 6.5V17.5C20 18.4665 19.2165 19.25 18.25 19.25H5.75C4.7835 19.25 4 18.4665 4 17.5V6.5C4 5.5335 4.7835 4.75 5.75 4.75H8.75ZM8 3V6.5M8 11H16M8 14.5H12"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <h3>Planejamento</h3>
+                <p>Entendimento do seu negócio e definição da melhor estratégia.</p>
+              </article>
+
+              <article class="process-step">
+                <span class="process-step__number">02</span>
+                <span class="process-step__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M9 8L5 12L9 16M15 8L19 12L15 16M13 5L11 19"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <h3>Desenvolvimento</h3>
+                <p>Criação com foco em performance, design e boas práticas.</p>
+              </article>
+
+              <article class="process-step">
+                <span class="process-step__number">03</span>
+                <span class="process-step__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M8.25 12.25L10.75 14.75L15.75 9.75M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <h3>Testes</h3>
+                <p>Testes de qualidade e otimização em todos os detalhes.</p>
+              </article>
+
+              <article class="process-step">
+                <span class="process-step__number">04</span>
+                <span class="process-step__icon" aria-hidden="true">
+                  <svg viewBox="0 0 36 36" fill="none">
+                    <use href="assets/icons/sprite.svg#icon-deploy-outline"></use>
+                  </svg>
+                </span>
+                <h3>Entrega</h3>
+                <p>Site no ar, rápido e pronto para gerar resultados.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="contact" id="contato">
+          <div class="container contact__layout">
+            <div class="contact__intro">
+              <p class="section-eyebrow">VAMOS CONVERSAR?</p>
+              <h2 class="contact__title">
+                Pronto para tirar
+                seu <span>projeto</span> do papel?
+              </h2>
+              <p class="contact__description">
+                Vamos conversar sobre suas ideias e transformar em uma solução
+                digital que gera resultados.
+              </p>
+
+              <div class="contact__actions">
+                <a
+                  class="contact-link contact-link--whatsapp"
+                  href="https://wa.me/5521992977688"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span class="contact-link__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <use href="assets/icons/sprite.svg#icon-message-circle"></use>
+                    </svg>
+                  </span>
+                  <span>Falar no WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="contact__panel">
+              <form class="contact-form" data-contact-form novalidate>
+                <div class="contact-form__row">
+                  <div class="contact-form__field">
+                    <label class="sr-only" for="contact-name">Nome</label>
+                    <input
+                      id="contact-name"
+                      name="nome"
+                      type="text"
+                      placeholder="Nome"
+                      autocomplete="name"
+                      required
+                      minlength="2"
+                      aria-describedby="contact-name-error"
+                    />
+                    <span
+                      class="contact-form__error"
+                      id="contact-name-error"
+                      data-error-for="contact-name"
+                      aria-live="polite"
+                    ></span>
+                  </div>
+
+                  <div class="contact-form__field">
+                    <label class="sr-only" for="contact-email">E-mail</label>
+                    <input
+                      id="contact-email"
+                      name="email"
+                      type="email"
+                      placeholder="E-mail"
+                      autocomplete="email"
+                      inputmode="email"
+                      required
+                      aria-describedby="contact-email-error"
+                    />
+                    <span
+                      class="contact-form__error"
+                      id="contact-email-error"
+                      data-error-for="contact-email"
+                      aria-live="polite"
+                    ></span>
+                  </div>
+                </div>
+
+                <div class="contact-form__field contact-form__field--message">
+                  <label class="sr-only" for="contact-message">Mensagem</label>
+                  <textarea
+                    id="contact-message"
+                    name="mensagem"
+                    placeholder="Mensagem"
+                    rows="5"
+                    required
+                    minlength="12"
+                    aria-describedby="contact-message-error"
+                  ></textarea>
+                  <span
+                    class="contact-form__error"
+                    id="contact-message-error"
+                    data-error-for="contact-message"
+                    aria-live="polite"
+                  ></span>
+                </div>
+
+                <p
+                  class="contact-form__feedback"
+                  data-contact-feedback
+                  role="status"
+                  aria-live="polite"
+                ></p>
+
+                <button class="contact-form__submit" type="submit">
+                  <span>Enviar mensagem</span>
+                  <span class="contact-form__submit-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M4.75 12L18.5 5.75L15.25 18.25L11.75 12.75L4.75 12ZM11.75 12.75L18.5 5.75"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
       </main>
+
+      <footer class="site-footer">
+        <div class="container site-footer__inner">
+          <a class="site-footer__brand" href="#inicio" aria-label="Andre Bastos">
+            <img
+              class="site-footer__logo"
+              src="assets/img/brand/logo.svg"
+              alt="Andre Bastos"
+              width="221"
+              height="71"
+            />
+          </a>
+
+          <nav class="site-footer__nav" aria-label="Links do rodapé">
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#projetos">Projetos</a>
+            <a href="#contato">Contato</a>
+          </nav>
+
+          <p class="site-footer__copy">© 2026 Andre Bastos. Todos os direitos reservados.</p>
+
+          <a class="site-footer__top" href="#topo" aria-label="Voltar ao topo">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M12 18V6M12 6L7.5 10.5M12 6L16.5 10.5"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+      </footer>
     </div>
 
     <script src="assets/js/projects-data.js"></script>

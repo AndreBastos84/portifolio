@@ -3,24 +3,23 @@
 
   const PROJECT_SECTION_ICONS = [
     `
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M15.5 18.25V16.75C15.5 15.6454 14.6046 14.75 13.5 14.75H10.5C9.39543 14.75 8.5 15.6454 8.5 16.75V18.25M15 8.25C15 9.90685 13.6569 11.25 12 11.25C10.3431 11.25 9 9.90685 9 8.25C9 6.59315 10.3431 5.25 12 5.25C13.6569 5.25 15 6.59315 15 8.25Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg viewBox="0 0 512 512" fill="none" aria-hidden="true">
+        <use href="assets/icons/sprite.svg#icon-person-outline"></use>
+      </svg>
+    `,
+    `
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <use href="assets/icons/sprite.svg#icon-flag-outline"></use>
       </svg>
     `,
     `
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M15.5 18.25V16.75C15.5 15.6454 14.6046 14.75 13.5 14.75H10.5C9.39543 14.75 8.5 15.6454 8.5 16.75V18.25M18.5 18.25V16.75C18.5 15.8174 17.8624 15.0037 17 14.75M15 8.25C15 9.90685 13.6569 11.25 12 11.25C10.3431 11.25 9 9.90685 9 8.25C9 6.59315 10.3431 5.25 12 5.25C13.6569 5.25 15 6.59315 15 8.25ZM18 9.25C18 10.4926 16.9926 11.5 15.75 11.5C14.5074 11.5 13.5 10.4926 13.5 9.25C13.5 8.00736 14.5074 7 15.75 7C16.9926 7 18 8.00736 18 9.25Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        <use href="assets/icons/sprite.svg#icon-code-outline"></use>
       </svg>
     `,
     `
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M8.5 8L4.5 12L8.5 16M15.5 8L19.5 12L15.5 16M13 6L11 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    `,
-    `
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M6.75 15.75L4.75 19.25L8.25 17.25L15.5 10L14 8.5L6.75 15.75Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M14 8.5L15.5 7C16.3284 6.17157 17.6716 6.17157 18.5 7C19.3284 7.82843 19.3284 9.17157 18.5 10L17 11.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <use href="assets/icons/sprite.svg#icon-puzzle-outline"></use>
       </svg>
     `,
   ];
@@ -98,6 +97,139 @@
     if (window.innerWidth > 900) {
       closeMenu();
     }
+  }
+
+  function initContactForm() {
+    const form = document.querySelector("[data-contact-form]");
+
+    if (!(form instanceof HTMLFormElement)) {
+      return;
+    }
+
+    const feedback = form.querySelector("[data-contact-feedback]");
+
+    const fields = Array.from(
+      form.querySelectorAll("input, textarea"),
+    ).filter((field) => field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement);
+
+    const errorMap = {
+      "contact-name": {
+        valueMissing: "Informe seu nome.",
+        tooShort: "Use pelo menos 2 caracteres.",
+      },
+      "contact-email": {
+        valueMissing: "Informe seu e-mail.",
+        typeMismatch: "Digite um e-mail válido.",
+      },
+      "contact-message": {
+        valueMissing: "Escreva sua mensagem.",
+        tooShort: "A mensagem precisa ter pelo menos 12 caracteres.",
+      },
+    };
+
+    function getErrorElement(field) {
+      return form.querySelector(`[data-error-for="${field.id}"]`);
+    }
+
+    function getFieldMessage(field) {
+      const rules = errorMap[field.id];
+
+      if (!rules) {
+        return "";
+      }
+
+      const value = field.value.trim();
+
+      if (field.hasAttribute("required") && !value) {
+        return rules.valueMissing || "Preencha este campo.";
+      }
+
+      if (field instanceof HTMLInputElement && field.type === "email" && value) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+        if (!emailPattern.test(value)) {
+          return rules.typeMismatch || "Digite um e-mail válido.";
+        }
+      }
+
+      const minLength = Number(field.getAttribute("minlength"));
+
+      if (minLength && value.length < minLength) {
+        return rules.tooShort || `Use pelo menos ${minLength} caracteres.`;
+      }
+
+      return "";
+    }
+
+    function validateField(field) {
+      const errorElement = getErrorElement(field);
+      const message = getFieldMessage(field);
+      const isValid = !message;
+
+      field.classList.toggle("is-invalid", !isValid);
+      field.setAttribute("aria-invalid", String(!isValid));
+
+      if (errorElement instanceof HTMLElement) {
+        errorElement.textContent = message;
+      }
+
+      return isValid;
+    }
+
+    function setFeedbackMessage(message, isSuccess = false) {
+      if (!(feedback instanceof HTMLElement)) {
+        return;
+      }
+
+      feedback.textContent = message;
+      feedback.classList.toggle("is-success", isSuccess);
+    }
+
+    function resetFieldState(field) {
+      const errorElement = getErrorElement(field);
+
+      field.classList.remove("is-invalid");
+      field.setAttribute("aria-invalid", "false");
+
+      if (errorElement instanceof HTMLElement) {
+        errorElement.textContent = "";
+      }
+    }
+
+    fields.forEach((field) => {
+      field.addEventListener("blur", () => {
+        validateField(field);
+      });
+
+      field.addEventListener("input", () => {
+        if (feedback instanceof HTMLElement && feedback.textContent) {
+          setFeedbackMessage("");
+        }
+
+        if (field.classList.contains("is-invalid")) {
+          validateField(field);
+        }
+      });
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const firstInvalidField = fields.find((field) => !validateField(field));
+
+      if (firstInvalidField) {
+        setFeedbackMessage("");
+        firstInvalidField.focus();
+        return;
+      }
+
+      fields.forEach((field) => {
+        resetFieldState(field);
+      });
+
+      form.reset();
+      setFeedbackMessage("Mensagem enviada com sucesso.", true);
+    });
   }
 
   function renderProjectSections(container, sections) {
@@ -248,6 +380,7 @@
     }
 
     bindNavigation();
+    initContactForm();
     initProjects();
     window.addEventListener("resize", handleResize);
   }

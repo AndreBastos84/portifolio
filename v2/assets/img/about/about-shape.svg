@@ -1,0 +1,26 @@
+<svg width="769" height="283" viewBox="0 0 769 283" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="about-shape-fill" x1="384.5" y1="16.2721" x2="384.5" y2="282.272" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#141B23" />
+      <stop offset="0.56" stop-color="#101720" />
+      <stop offset="1" stop-color="#0B1118" />
+    </linearGradient>
+    <radialGradient id="about-shape-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(148 182) rotate(2.2) scale(138 82)">
+      <stop stop-color="#7A9940" stop-opacity="0.22" />
+      <stop offset="1" stop-color="#7A9940" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <path
+    d="M768.053 282.272V72.2721C613.201 55.3753 628.053 71.2341 457.053 16.2721C286.053 -38.6898 92.697 59.1769 8.05288 168.272C-41.6072 261.756 147.113 283.563 768.053 282.272Z"
+    fill="url(#about-shape-fill)"
+  />
+  <path
+    d="M768.053 282.272V72.2721C613.201 55.3753 628.053 71.2341 457.053 16.2721C286.053 -38.6898 92.697 59.1769 8.05288 168.272C-41.6072 261.756 147.113 283.563 768.053 282.272Z"
+    fill="url(#about-shape-glow)"
+  />
+  <path
+    d="M768.053 282.272V72.2721C613.201 55.3753 628.053 71.2341 457.053 16.2721C286.053 -38.6898 92.697 59.1769 8.05288 168.272C-41.6072 261.756 147.113 283.563 768.053 282.272Z"
+    stroke="#212B35"
+    stroke-opacity="0.72"
+  />
+</svg>

@@ -1,772 +1,582 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Andre Bastos | Desenvolvedor Web Full Stack</title>
-    <meta
-      name="description"
-      content="Soluções digitais com foco em performance, clareza e resultado para sites, landing pages e WordPress."
-    />
-    <meta name="theme-color" content="#0B0F0B" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="assets/img/brand/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="assets/img/brand/favicon-48x48.png" sizes="48x48" type="image/png" />
-    <link rel="icon" href="assets/img/brand/favicon-32x32.png" sizes="32x32" type="image/png" />
-    <link rel="icon" href="assets/img/brand/favicon-16x16.png" sizes="16x16" type="image/png" />
-    <link rel="shortcut icon" href="assets/img/brand/favicon.ico" />
-    <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png" sizes="180x180" />
-    <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
-  <body>
-    <div id="topo" aria-hidden="true"></div>
-    <div class="page-shell">
-      <header class="site-header">
-        <div class="container site-header__inner">
-          <a class="brand" href="#inicio" aria-label="Andre Bastos">
-            <img
-              class="brand__logo"
-              src="assets/img/brand/logo.svg"
-              alt="Andre Bastos"
-              width="221"
-              height="71"
-            />
-          </a>
 
-          <button
-            class="menu-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="site-nav"
-            aria-label="Abrir menu"
-          >
-            <span></span>
-            <span></span>
-          </button>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Andre Bastos | Desenvolvedor Web Full Stack</title>
+  <meta name="description"
+    content="Soluções digitais com foco em performance, clareza e resultado para sites, landing pages e WordPress." />
+  <meta name="theme-color" content="#0B0F0B" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/img/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/img/brand/favicon-96x96.png" sizes="96x96" type="image/png" />
+  <link rel="shortcut icon" href="assets/img/brand/favicon.ico" />
+  <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png" sizes="180x180" />
+  <meta name="apple-mobile-web-app-title" content="AlsBastos" />
+  <link rel="manifest" href="assets/img/brand/site.webmanifest" />
 
-          <nav class="site-nav" id="site-nav" aria-label="Menu principal">
-            <a class="is-active" href="#inicio">Início</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#servicos">Serviços</a>
-            <a href="#projetos">Projetos</a>
-            <a href="#contato">Contato</a>
-          </nav>
 
-          <a class="header-cta" href="#contato">
-            <span>Vamos conversar</span>
-            <span class="header-cta__icon" aria-hidden="true">
-              <svg class="header-cta__svg" viewBox="0 0 24 24">
-                <use href="assets/icons/sprite.svg#icon-message-circle"></use>
-              </svg>
-            </span>
-          </a>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <div id="topo" aria-hidden="true"></div>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="#inicio" aria-label="Andre Bastos">
+          <img class="brand__logo" src="assets/img/brand/logo.svg" alt="Andre Bastos" width="221" height="71" />
+        </a>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+          aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Menu principal">
+          <a class="is-active" href="#inicio">Início</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#contato">Contato</a>
+        </nav>
+
+        <a class="header-cta" href="#contato">
+          <span>Vamos conversar</span>
+          <span class="header-cta__icon" aria-hidden="true">
+            <svg class="header-cta__svg" viewBox="0 0 24 24">
+              <use href="assets/icons/sprite.svg#icon-message-circle"></use>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero__ambient hero__ambient--left" aria-hidden="true"></div>
+        <div class="hero__ambient hero__ambient--right" aria-hidden="true"></div>
+
+        <div class="container hero__grid">
+          <div class="hero__content">
+            <p class="hero__eyebrow">OLÁ, EU SOU</p>
+            <h1>Andre Bastos</h1>
+            <p class="hero__role">Desenvolvedor Web Full Stack</p>
+            <p class="hero__description">
+              Soluções digitais com foco em performance, clareza e resultado.
+            </p>
+
+            <ul class="stack-list" aria-label="Stack principal">
+              <li class="stack-chip stack-chip--html">
+                <span class="stack-chip__icon" aria-hidden="true">
+                  <svg class="stack-chip__svg" viewBox="0 0 27.17 27.17">
+                    <use href="assets/icons/sprite.svg#icon-html5"></use>
+                  </svg>
+                </span>
+                <span>HTML</span>
+              </li>
+              <li class="stack-chip stack-chip--css">
+                <span class="stack-chip__icon" aria-hidden="true">
+                  <svg class="stack-chip__svg" viewBox="0 0 32 32">
+                    <use href="assets/icons/sprite.svg#icon-css3"></use>
+                  </svg>
+                </span>
+                <span>CSS</span>
+              </li>
+              <li class="stack-chip stack-chip--js">
+                <span class="stack-chip__icon" aria-hidden="true">
+                  <svg class="stack-chip__svg" viewBox="0 0 32 32">
+                    <use href="assets/icons/sprite.svg#icon-javascript"></use>
+                  </svg>
+                </span>
+                <span>JavaScript</span>
+              </li>
+              <li class="stack-chip stack-chip--php">
+                <span class="stack-chip__icon" aria-hidden="true">
+                  <svg class="stack-chip__svg" viewBox="0 0 512 512">
+                    <use href="assets/icons/sprite.svg#icon-php"></use>
+                  </svg>
+                </span>
+                <span>PHP</span>
+              </li>
+              <li class="stack-chip stack-chip--wp">
+                <span class="stack-chip__icon" aria-hidden="true">
+                  <svg class="stack-chip__svg" viewBox="0 0 48 48">
+                    <use href="assets/icons/sprite.svg#icon-wordpress"></use>
+                  </svg>
+                </span>
+                <span>WordPress</span>
+              </li>
+            </ul>
+
+            <div class="hero__actions">
+              <a class="hero-button hero-button--primary" href="#projetos">
+                <span>Ver projetos</span>
+                <span class="hero-button__icon" aria-hidden="true"></span>
+              </a>
+
+              <a class="hero-button hero-button--secondary" href="#contato">
+                <span>Solicitar orçamento</span>
+                <span class="hero-button__icon" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero__visual">
+            <div class="hero__visual-glow hero__visual-glow--back" aria-hidden="true"></div>
+            <img class="hero__image" src="assets/img/hero/hero-visual.webp"
+              alt="Notebook com projeto OSJ Chiquinha Gonzaga em destaque" width="770" height="634" />
+          </div>
         </div>
-      </header>
 
-      <main>
-        <section class="hero" id="inicio">
-          <div class="hero__ambient hero__ambient--left" aria-hidden="true"></div>
-          <div class="hero__ambient hero__ambient--right" aria-hidden="true"></div>
+        <div class="hero__flow hero__flow--one" aria-hidden="true"></div>
+        <div class="hero__flow hero__flow--two" aria-hidden="true"></div>
+      </section>
 
-          <div class="container hero__grid">
-            <div class="hero__content">
-              <p class="hero__eyebrow">OLÁ, EU SOU</p>
-              <h1>Andre Bastos</h1>
-              <p class="hero__role">Desenvolvedor Web Full Stack</p>
-              <p class="hero__description">
-                Soluções digitais com foco em performance, clareza e resultado.
-              </p>
+      <section class="about" id="sobre">
+        <div class="about__wash" aria-hidden="true"></div>
 
-              <ul class="stack-list" aria-label="Stack principal">
-                <li class="stack-chip stack-chip--html">
-                  <span class="stack-chip__icon" aria-hidden="true">
-                    <svg class="stack-chip__svg" viewBox="0 0 27.17 27.17">
-                      <use href="assets/icons/sprite.svg#icon-html5"></use>
-                    </svg>
-                  </span>
-                  <span>HTML</span>
-                </li>
-                <li class="stack-chip stack-chip--css">
-                  <span class="stack-chip__icon" aria-hidden="true">
-                    <svg class="stack-chip__svg" viewBox="0 0 32 32">
-                      <use href="assets/icons/sprite.svg#icon-css3"></use>
-                    </svg>
-                  </span>
-                  <span>CSS</span>
-                </li>
-                <li class="stack-chip stack-chip--js">
-                  <span class="stack-chip__icon" aria-hidden="true">
-                    <svg class="stack-chip__svg" viewBox="0 0 32 32">
-                      <use href="assets/icons/sprite.svg#icon-javascript"></use>
-                    </svg>
-                  </span>
-                  <span>JavaScript</span>
-                </li>
-                <li class="stack-chip stack-chip--php">
-                  <span class="stack-chip__icon" aria-hidden="true">
-                    <svg class="stack-chip__svg" viewBox="0 0 512 512">
-                      <use href="assets/icons/sprite.svg#icon-php"></use>
-                    </svg>
-                  </span>
-                  <span>PHP</span>
-                </li>
-                <li class="stack-chip stack-chip--wp">
-                  <span class="stack-chip__icon" aria-hidden="true">
-                    <svg class="stack-chip__svg" viewBox="0 0 48 48">
-                      <use href="assets/icons/sprite.svg#icon-wordpress"></use>
-                    </svg>
-                  </span>
-                  <span>WordPress</span>
-                </li>
-              </ul>
-
-              <div class="hero__actions">
-                <a class="hero-button hero-button--primary" href="#projetos">
-                  <span>Ver projetos</span>
-                  <span class="hero-button__icon" aria-hidden="true"></span>
-                </a>
-
-                <a class="hero-button hero-button--secondary" href="#contato">
-                  <span>Solicitar orçamento</span>
-                  <span class="hero-button__icon" aria-hidden="true"></span>
-                </a>
-              </div>
-            </div>
-
-            <div class="hero__visual">
-              <div class="hero__visual-glow hero__visual-glow--back" aria-hidden="true"></div>
-              <img
-                class="hero__image"
-                src="assets/img/hero/hero-visual.png"
-                alt="Notebook com projeto OSJ Chiquinha Gonzaga em destaque"
-                width="770"
-                height="634"
-              />
+        <div class="container about__grid">
+          <div class="about__media">
+            <div class="about__image-shell">
+              <img class="about__image" src="assets/img/about/about-visual.png" alt="Retrato de Andre Bastos"
+                width="640" height="480" />
             </div>
           </div>
 
-          <div class="hero__flow hero__flow--one" aria-hidden="true"></div>
-          <div class="hero__flow hero__flow--two" aria-hidden="true"></div>
-        </section>
+          <div class="about__content">
+            <p class="section-eyebrow">SOBRE MIM</p>
+            <h2 class="about__title">
+              Código com <span>propósito</span>.<br />
+              Resultados que conectam.
+            </h2>
 
-        <section class="about" id="sobre">
-          <div class="about__wash" aria-hidden="true"></div>
+            <p class="about__description">
+              Desenvolvo soluções web desde 2008, criando projetos digitais com foco em clareza, performance e
+              manutenção consistente.
+            </p>
+            <p class="about__description">
 
-          <div class="container about__grid">
-            <div class="about__media">
-              <div class="about__image-shell">
-                <img
-                  class="about__image"
-                  src="assets/img/about/about-visual.png"
-                  alt="Retrato de Andre Bastos"
-                  width="640"
-                  height="480"
-                />
-              </div>
-            </div>
+              Em parceria com o <a target="_blank" href="https://ezequielgomes.com/">StudioZek</a> (Design & UX), atuo da estratégia à implementação para entregar experiências
+              web mais sólidas e bem resolvidas.
+            </p>
 
-            <div class="about__content">
-              <p class="section-eyebrow">SOBRE MIM</p>
-              <h2 class="about__title">
-                Código com <span>propósito</span>.<br />
-                Resultados que conectam.
-              </h2>
+            <div class="about__highlights" aria-label="Destaques profissionais">
+              <article class="about-card">
+                <span class="about-card__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M7 2.75V5.25M17 2.75V5.25M3.75 8.25H20.25M5.5 4.75H18.5C19.4665 4.75 20.25 5.5335 20.25 6.5V18.5C20.25 19.4665 19.4665 20.25 18.5 20.25H5.5C4.5335 20.25 3.75 19.4665 3.75 18.5V6.5C3.75 5.5335 4.5335 4.75 5.5 4.75Z"
+                      stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <div class="about-card__text">
+                  <strong>+15 anos</strong>
+                  <span>de experiência</span>
+                </div>
+              </article>
 
-              <p class="about__description">
-                Desenvolvo soluções web desde 2008, unindo tecnologia, design e
-                estratégia para criar experiências digitais que geram valor real para
-                negócios.
-              </p>
-              <p class="about__description">
-                Atuo de ponta a ponta, do planejamento à implementação.
-              </p>
+              <article class="about-card">
+                <span class="about-card__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <use href="assets/icons/sprite.svg#icon-users-outline"></use>
+                  </svg>
+                </span>
+                <div class="about-card__text">
+                  <strong>Clientes</strong>
+                  <span>nacionais e multinacionais</span>
+                </div>
+              </article>
 
-              <div class="about__highlights" aria-label="Destaques profissionais">
-                <article class="about-card">
-                  <span class="about-card__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M7 2.75V5.25M17 2.75V5.25M3.75 8.25H20.25M5.5 4.75H18.5C19.4665 4.75 20.25 5.5335 20.25 6.5V18.5C20.25 19.4665 19.4665 20.25 18.5 20.25H5.5C4.5335 20.25 3.75 19.4665 3.75 18.5V6.5C3.75 5.5335 4.5335 4.75 5.5 4.75Z"
-                        stroke="currentColor"
-                        stroke-width="1.7"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </span>
-                  <div class="about-card__text">
-                    <strong>+15 anos</strong>
-                    <span>de experiência</span>
-                  </div>
-                </article>
-
-                <article class="about-card">
-                  <span class="about-card__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <use href="assets/icons/sprite.svg#icon-users-outline"></use>
-                    </svg>
-                  </span>
-                  <div class="about-card__text">
-                    <strong>Clientes</strong>
-                    <span>nacionais e multinacionais</span>
-                  </div>
-                </article>
-
-                <article class="about-card">
-                  <span class="about-card__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M12 3.75L14.5481 8.91365L20.25 9.74293L16.125 13.7637L17.0981 19.4421L12 16.7637L6.90192 19.4421L7.875 13.7637L3.75 9.74293L9.45192 8.91365L12 3.75Z"
-                        stroke="currentColor"
-                        stroke-width="1.7"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </span>
-                  <div class="about-card__text">
-                    <strong>Foco em</strong>
-                    <span>qualidade e resultado</span>
-                  </div>
-                </article>
-              </div>
+              <article class="about-card">
+                <span class="about-card__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 3.75L14.5481 8.91365L20.25 9.74293L16.125 13.7637L17.0981 19.4421L12 16.7637L6.90192 19.4421L7.875 13.7637L3.75 9.74293L9.45192 8.91365L12 3.75Z"
+                      stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <div class="about-card__text">
+                  <strong>Foco em</strong>
+                  <span>qualidade e resultado</span>
+                </div>
+              </article>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="services" id="servicos">
-          <div class="container services__grid">
-            <div class="services__intro">
-              <p class="section-eyebrow">SERVIÇOS</p>
-              <h2 class="services__title">
-                Soluções completas para
-                impulsionar <span>seu negócio</span>.
-              </h2>
+      <section class="services" id="servicos">
+        <div class="container services__grid">
+          <div class="services__intro">
+            <p class="section-eyebrow">SERVIÇOS</p>
+            <h2 class="services__title">
+              Soluções completas para
+              impulsionar <span>seu negócio</span>.
+            </h2>
+          </div>
+
+          <div class="services__cards" aria-label="Lista de serviços">
+            <article class="service-card">
+              <span class="service-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M4 6.75C4 5.7835 4.7835 5 5.75 5H18.25C19.2165 5 20 5.7835 20 6.75V14.25C20 15.2165 19.2165 16 18.25 16H5.75C4.7835 16 4 15.2165 4 14.25V6.75Z"
+                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M9 19H15M12 16V19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                </svg>
+              </span>
+              <h3>Websites</h3>
+              <p>
+                Sites institucionais e comerciais desenvolvidos em WordPress,
+                com foco em performance, SEO e gestão simples de conteúdo.
+              </p>
+              <span class="service-card__arrow" aria-hidden="true"></span>
+            </article>
+
+            <article class="service-card">
+              <span class="service-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <use href="assets/icons/sprite.svg#icon-rocket-outline"></use>
+                </svg>
+              </span>
+              <h3>Landing Pages</h3>
+              <p>
+                Páginas focadas em conversão para campanhas, lançamentos e
+                captação de leads, com estrutura rápida e objetiva.
+              </p>
+              <span class="service-card__arrow" aria-hidden="true"></span>
+            </article>
+
+            <article class="service-card">
+              <span class="service-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M8.5 8L4.5 12L8.5 16M15.5 8L19.5 12L15.5 16M13 6L11 18" stroke="currentColor"
+                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <h3>E-commerce</h3>
+              <p>
+                Lojas virtuais completas com WordPress e WooCommerce,
+                preparadas para vendas, gestão de produtos e crescimento.
+              </p>
+              <span class="service-card__arrow" aria-hidden="true"></span>
+            </article>
+
+            <article class="service-card">
+              <span class="service-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 100 100" fill="none">
+                  <use href="assets/icons/sprite.svg#icon-screen-outline"></use>
+                </svg>
+              </span>
+              <h3>Front-end</h3>
+              <p>
+                Interfaces sob medida e desenvolvimento de e-mails HTML para
+                campanhas, automações e comunicação digital.
+              </p>
+              <span class="service-card__arrow" aria-hidden="true"></span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects" id="projetos">
+        <div class="container projects__layout">
+          <aside class="projects__sidebar">
+            <p class="section-eyebrow">PROJETOS</p>
+            <h2 class="projects__title">
+              Projetos que
+              geram&nbsp;<span>impacto.</span>
+            </h2>
+
+            <div class="projects__list" role="tablist" aria-label="Projetos em destaque">
+              <button class="project-nav is-active" type="button" data-project-trigger data-project-id="project-01"
+                aria-selected="true">
+                <span class="project-nav__media">
+                  <span class="project-nav__number">01</span>
+                  <img class="project-nav__thumb" src="assets/img/projects/projeto-01-thumb.webp" alt="" width="112"
+                    height="72" />
+                </span>
+                <span class="project-nav__name">
+                  Orquestra Sinfônica
+                  Juvenil Chiquinha Gonzaga
+                </span>
+              </button>
+
+              <button class="project-nav" type="button" data-project-trigger data-project-id="project-02"
+                aria-selected="false">
+                <span class="project-nav__media">
+                  <span class="project-nav__number">02</span>
+                  <img class="project-nav__thumb" src="assets/img/projects/projeto-02-thumb.webp" alt="" width="112"
+                    height="72" />
+                </span>
+                <span class="project-nav__name">E-mail Marketing AMBEV</span>
+              </button>
+
+              <button class="project-nav" type="button" data-project-trigger data-project-id="project-03"
+                aria-selected="false">
+                <span class="project-nav__media">
+                  <span class="project-nav__number">03</span>
+                  <img class="project-nav__thumb" src="assets/img/projects/projeto-03-thumb.webp" alt="" width="112"
+                    height="72" />
+                </span>
+                <span class="project-nav__name">IBME</span>
+              </button>
+
+              <button class="project-nav" type="button" data-project-trigger data-project-id="project-04"
+                aria-selected="false">
+                <span class="project-nav__media">
+                  <span class="project-nav__number">04</span>
+                  <img class="project-nav__thumb" src="assets/img/projects/projeto-04-thumb.webp" alt="" width="112"
+                    height="72" />
+                </span>
+                <span class="project-nav__name">Sinta o Som</span>
+              </button>
+
+              <button class="project-nav" type="button" data-project-trigger data-project-id="project-05"
+                aria-selected="false">
+                <span class="project-nav__media">
+                  <span class="project-nav__number">05</span>
+                  <img class="project-nav__thumb" src="assets/img/projects/projeto-05-thumb.webp" alt="" width="112"
+                    height="72" />
+                </span>
+                <span class="project-nav__name">Oddly Experience</span>
+              </button>
+
+              <button class="project-nav" type="button" data-project-trigger data-project-id="project-06"
+                aria-selected="false">
+                <span class="project-nav__media">
+                  <span class="project-nav__number">06</span>
+                  <img class="project-nav__thumb" src="assets/img/projects/projeto-06-thumb.webp" alt="" width="112"
+                    height="72" />
+                </span>
+                <span class="project-nav__name">FutureCoat</span>
+              </button>
             </div>
 
-            <div class="services__cards" aria-label="Lista de serviços">
-              <article class="service-card">
-                <span class="service-card__icon" aria-hidden="true">
+          </aside>
+
+          <article class="projects-panel" aria-live="polite">
+            <div class="projects-panel__hero">
+              <div class="projects-panel__copy">
+                <p class="projects-panel__kicker" data-project-kicker>WEBSITE</p>
+                <h3 class="projects-panel__title" data-project-title>
+                  Orquestra Sinfônica
+                  Juvenil Chiquinha Gonzaga
+                </h3>
+                <p class="projects-panel__summary" data-project-summary>
+                  Site institucional desenvolvido para apresentar o projeto social
+                  que transforma a vida de meninas através da música e da educação.
+                </p>
+
+                <ul class="projects-panel__tags" data-project-tags>
+                  <li>Institucional</li>
+                  <li>Responsivo</li>
+                  <li>SEO</li>
+                  <li>Performance</li>
+                </ul>
+              </div>
+
+              <div class="projects-panel__visual">
+                <img class="projects-panel__image" data-project-image src="assets/img/projects/full/projeto-01.webp"
+                  alt="Projeto Orquestra Sinfônica Juvenil Chiquinha Gonzaga" width="910" height="620" />
+              </div>
+            </div>
+
+            <div class="projects-panel__report">
+              <div class="projects-panel__sections" data-project-sections></div>
+
+              <div class="projects-panel__meta">
+                <div class="projects-panel__stack">
+                  <span class="projects-panel__meta-label">STACK</span>
+                  <div class="projects-panel__stack-icons" data-project-stack></div>
+                </div>
+
+                <div class="projects-panel__type">
+                  <span class="projects-panel__meta-label">TIPO DE PROJETO</span>
+                  <strong data-project-type>Site Institucional</strong>
+                </div>
+
+                <span class="projects-panel__status" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none">
                     <path
                       d="M4 6.75C4 5.7835 4.7835 5 5.75 5H18.25C19.2165 5 20 5.7835 20 6.75V14.25C20 15.2165 19.2165 16 18.25 16H5.75C4.7835 16 4 15.2165 4 14.25V6.75Z"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M9 19H15M12 16V19"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                    />
+                      stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M9 19H15M12 16V19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
                   </svg>
                 </span>
-                <h3>Websites</h3>
-                <p>
-                  Sites institucionais e comerciais desenvolvidos em WordPress,
-                  com foco em performance, SEO e gestão simples de conteúdo.
-                </p>
-                <span class="service-card__arrow" aria-hidden="true"></span>
-              </article>
-
-              <article class="service-card">
-                <span class="service-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <use href="assets/icons/sprite.svg#icon-rocket-outline"></use>
-                  </svg>
-                </span>
-                <h3>Landing Pages</h3>
-                <p>
-                  Páginas focadas em conversão para campanhas, lançamentos e
-                  captação de leads, com estrutura rápida e objetiva.
-                </p>
-                <span class="service-card__arrow" aria-hidden="true"></span>
-              </article>
-
-              <article class="service-card">
-                <span class="service-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M8.5 8L4.5 12L8.5 16M15.5 8L19.5 12L15.5 16M13 6L11 18"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-                <h3>E-commerce</h3>
-                <p>
-                  Lojas virtuais completas com WordPress e WooCommerce,
-                  preparadas para vendas, gestão de produtos e crescimento.
-                </p>
-                <span class="service-card__arrow" aria-hidden="true"></span>
-              </article>
-
-              <article class="service-card">
-                <span class="service-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 100 100" fill="none">
-                    <use href="assets/icons/sprite.svg#icon-screen-outline"></use>
-                  </svg>
-                </span>
-                <h3>Front-end</h3>
-                <p>
-                  Interfaces sob medida e desenvolvimento de e-mails HTML para
-                  campanhas, automações e comunicação digital.
-                </p>
-                <span class="service-card__arrow" aria-hidden="true"></span>
-              </article>
+              </div>
             </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="process" id="processo">
+        <div class="container process__layout">
+          <div class="process__intro">
+            <p class="section-eyebrow">COMO TRABALHO</p>
+            <h2 class="process__title">
+              Processo simples,
+              resultado <span>eficiente.</span>
+            </h2>
           </div>
-        </section>
 
-        <section class="projects" id="projetos">
-          <div class="container projects__layout">
-            <aside class="projects__sidebar">
-              <p class="section-eyebrow">PROJETOS</p>
-              <h2 class="projects__title">
-                Projetos que
-                geram&nbsp;<span>impacto.</span>
-              </h2>
+          <div class="process__steps" aria-label="Etapas do processo de trabalho">
+            <article class="process-step">
+              <span class="process-step__number">01</span>
+              <span class="process-step__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M8.75 4.75H18.25C19.2165 4.75 20 5.5335 20 6.5V17.5C20 18.4665 19.2165 19.25 18.25 19.25H5.75C4.7835 19.25 4 18.4665 4 17.5V6.5C4 5.5335 4.7835 4.75 5.75 4.75H8.75ZM8 3V6.5M8 11H16M8 14.5H12"
+                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <h3>Planejamento</h3>
+              <p>Entendimento do seu negócio e definição da melhor estratégia.</p>
+            </article>
 
-              <div class="projects__list" role="tablist" aria-label="Projetos em destaque">
-                <button
-                  class="project-nav is-active"
-                  type="button"
-                  data-project-trigger
-                  data-project-id="project-01"
-                  aria-selected="true"
-                >
-                  <span class="project-nav__media">
-                    <span class="project-nav__number">01</span>
-                    <img
-                      class="project-nav__thumb"
-                      src="assets/img/projects/projeto-01-thumb.webp"
-                      alt=""
-                      width="112"
-                      height="72"
-                    />
-                  </span>
-                  <span class="project-nav__name">
-                    Orquestra Sinfônica
-                    Juvenil Chiquinha Gonzaga
-                  </span>
-                </button>
+            <article class="process-step">
+              <span class="process-step__number">02</span>
+              <span class="process-step__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M9 8L5 12L9 16M15 8L19 12L15 16M13 5L11 19" stroke="currentColor" stroke-width="1.7"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <h3>Desenvolvimento</h3>
+              <p>Criação com foco em performance, design e boas práticas.</p>
+            </article>
 
-                <button
-                  class="project-nav"
-                  type="button"
-                  data-project-trigger
-                  data-project-id="project-02"
-                  aria-selected="false"
-                >
-                  <span class="project-nav__media">
-                    <span class="project-nav__number">02</span>
-                    <img
-                      class="project-nav__thumb"
-                      src="assets/img/projects/projeto-02-thumb.webp"
-                      alt=""
-                      width="112"
-                      height="72"
-                    />
-                  </span>
-                  <span class="project-nav__name">Construtora Nobre</span>
-                </button>
+            <article class="process-step">
+              <span class="process-step__number">03</span>
+              <span class="process-step__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M8.25 12.25L10.75 14.75L15.75 9.75M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <h3>Testes</h3>
+              <p>Testes de qualidade e otimização em todos os detalhes.</p>
+            </article>
 
-                <button
-                  class="project-nav"
-                  type="button"
-                  data-project-trigger
-                  data-project-id="project-03"
-                  aria-selected="false"
-                >
-                  <span class="project-nav__media">
-                    <span class="project-nav__number">03</span>
-                    <img
-                      class="project-nav__thumb"
-                      src="assets/img/projects/projeto-03-thumb.webp"
-                      alt=""
-                      width="112"
-                      height="72"
-                    />
-                  </span>
-                  <span class="project-nav__name">Aurora Skincare</span>
-                </button>
-
-                <button
-                  class="project-nav"
-                  type="button"
-                  data-project-trigger
-                  data-project-id="project-04"
-                  aria-selected="false"
-                >
-                  <span class="project-nav__media">
-                    <span class="project-nav__number">04</span>
-                    <img
-                      class="project-nav__thumb"
-                      src="assets/img/projects/projeto-04-thumb.webp"
-                      alt=""
-                      width="112"
-                      height="72"
-                    />
-                  </span>
-                  <span class="project-nav__name">DashFinance</span>
-                </button>
-
-                <button
-                  class="project-nav"
-                  type="button"
-                  data-project-trigger
-                  data-project-id="project-05"
-                  aria-selected="false"
-                >
-                  <span class="project-nav__media">
-                    <span class="project-nav__number">05</span>
-                    <img
-                      class="project-nav__thumb"
-                      src="assets/img/projects/projeto-05-thumb.webp"
-                      alt=""
-                      width="112"
-                      height="72"
-                    />
-                  </span>
-                  <span class="project-nav__name">Personal Trainer</span>
-                </button>
-
-                <button
-                  class="project-nav"
-                  type="button"
-                  data-project-trigger
-                  data-project-id="project-06"
-                  aria-selected="false"
-                >
-                  <span class="project-nav__media">
-                    <span class="project-nav__number">06</span>
-                    <img
-                      class="project-nav__thumb"
-                      src="assets/img/projects/projeto-06-thumb.webp"
-                      alt=""
-                      width="112"
-                      height="72"
-                    />
-                  </span>
-                  <span class="project-nav__name">Verdejar Paisagismo</span>
-                </button>
-              </div>
-
-            </aside>
-
-            <article class="projects-panel" aria-live="polite">
-              <div class="projects-panel__hero">
-                <div class="projects-panel__copy">
-                  <p class="projects-panel__kicker" data-project-kicker>WEBSITE</p>
-                  <h3 class="projects-panel__title" data-project-title>
-                    Orquestra Sinfônica
-                    Juvenil Chiquinha Gonzaga
-                  </h3>
-                  <p class="projects-panel__summary" data-project-summary>
-                    Site institucional desenvolvido para apresentar o projeto social
-                    que transforma a vida de meninas através da música e da educação.
-                  </p>
-
-                  <ul class="projects-panel__tags" data-project-tags>
-                    <li>Institucional</li>
-                    <li>Responsivo</li>
-                    <li>SEO</li>
-                    <li>Performance</li>
-                  </ul>
-                </div>
-
-                <div class="projects-panel__visual">
-                  <img
-                    class="projects-panel__image"
-                    data-project-image
-                    src="assets/img/projects/full/projeto-01.webp"
-                    alt="Projeto Orquestra Sinfônica Juvenil Chiquinha Gonzaga"
-                    width="910"
-                    height="620"
-                  />
-                </div>
-              </div>
-
-              <div class="projects-panel__report">
-                <div class="projects-panel__sections" data-project-sections></div>
-
-                <div class="projects-panel__meta">
-                  <div class="projects-panel__stack">
-                    <span class="projects-panel__meta-label">STACK</span>
-                    <div class="projects-panel__stack-icons" data-project-stack></div>
-                  </div>
-
-                  <div class="projects-panel__type">
-                    <span class="projects-panel__meta-label">TIPO DE PROJETO</span>
-                    <strong data-project-type>Site Institucional</strong>
-                  </div>
-
-                  <span class="projects-panel__status" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M4 6.75C4 5.7835 4.7835 5 5.75 5H18.25C19.2165 5 20 5.7835 20 6.75V14.25C20 15.2165 19.2165 16 18.25 16H5.75C4.7835 16 4 15.2165 4 14.25V6.75Z"
-                        stroke="currentColor"
-                        stroke-width="1.6"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M9 19H15M12 16V19"
-                        stroke="currentColor"
-                        stroke-width="1.6"
-                        stroke-linecap="round"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </div>
+            <article class="process-step">
+              <span class="process-step__number">04</span>
+              <span class="process-step__icon" aria-hidden="true">
+                <svg viewBox="0 0 36 36" fill="none">
+                  <use href="assets/icons/sprite.svg#icon-deploy-outline"></use>
+                </svg>
+              </span>
+              <h3>Entrega</h3>
+              <p>Site no ar, rápido e pronto para gerar resultados.</p>
             </article>
           </div>
-        </section>
-
-        <section class="process" id="processo">
-          <div class="container process__layout">
-            <div class="process__intro">
-              <p class="section-eyebrow">COMO TRABALHO</p>
-              <h2 class="process__title">
-                Processo simples,
-                resultado <span>eficiente.</span>
-              </h2>
-            </div>
-
-            <div class="process__steps" aria-label="Etapas do processo de trabalho">
-              <article class="process-step">
-                <span class="process-step__number">01</span>
-                <span class="process-step__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M8.75 4.75H18.25C19.2165 4.75 20 5.5335 20 6.5V17.5C20 18.4665 19.2165 19.25 18.25 19.25H5.75C4.7835 19.25 4 18.4665 4 17.5V6.5C4 5.5335 4.7835 4.75 5.75 4.75H8.75ZM8 3V6.5M8 11H16M8 14.5H12"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-                <h3>Planejamento</h3>
-                <p>Entendimento do seu negócio e definição da melhor estratégia.</p>
-              </article>
-
-              <article class="process-step">
-                <span class="process-step__number">02</span>
-                <span class="process-step__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M9 8L5 12L9 16M15 8L19 12L15 16M13 5L11 19"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-                <h3>Desenvolvimento</h3>
-                <p>Criação com foco em performance, design e boas práticas.</p>
-              </article>
-
-              <article class="process-step">
-                <span class="process-step__number">03</span>
-                <span class="process-step__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M8.25 12.25L10.75 14.75L15.75 9.75M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-                <h3>Testes</h3>
-                <p>Testes de qualidade e otimização em todos os detalhes.</p>
-              </article>
-
-              <article class="process-step">
-                <span class="process-step__number">04</span>
-                <span class="process-step__icon" aria-hidden="true">
-                  <svg viewBox="0 0 36 36" fill="none">
-                    <use href="assets/icons/sprite.svg#icon-deploy-outline"></use>
-                  </svg>
-                </span>
-                <h3>Entrega</h3>
-                <p>Site no ar, rápido e pronto para gerar resultados.</p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section class="contact" id="contato">
-          <div class="container contact__layout">
-            <div class="contact__intro">
-              <p class="section-eyebrow">VAMOS CONVERSAR?</p>
-              <h2 class="contact__title">
-                Pronto para tirar
-                seu <span>projeto</span> do papel?
-              </h2>
-              <p class="contact__description">
-                Vamos conversar sobre suas ideias e transformar em uma solução
-                digital que gera resultados.
-              </p>
-
-              <div class="contact__actions">
-                <a
-                  class="contact-link contact-link--whatsapp"
-                  href="https://wa.me/5521992977688"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <span class="contact-link__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <use href="assets/icons/sprite.svg#icon-message-circle"></use>
-                    </svg>
-                  </span>
-                  <span>Falar no WhatsApp</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="contact__panel">
-              <form class="contact-form" data-contact-form novalidate>
-                <div class="contact-form__row">
-                  <div class="contact-form__field">
-                    <label class="sr-only" for="contact-name">Nome</label>
-                    <input
-                      id="contact-name"
-                      name="nome"
-                      type="text"
-                      placeholder="Nome"
-                      autocomplete="name"
-                      required
-                      minlength="2"
-                      aria-describedby="contact-name-error"
-                    />
-                    <span
-                      class="contact-form__error"
-                      id="contact-name-error"
-                      data-error-for="contact-name"
-                      aria-live="polite"
-                    ></span>
-                  </div>
-
-                  <div class="contact-form__field">
-                    <label class="sr-only" for="contact-email">E-mail</label>
-                    <input
-                      id="contact-email"
-                      name="email"
-                      type="email"
-                      placeholder="E-mail"
-                      autocomplete="email"
-                      inputmode="email"
-                      required
-                      aria-describedby="contact-email-error"
-                    />
-                    <span
-                      class="contact-form__error"
-                      id="contact-email-error"
-                      data-error-for="contact-email"
-                      aria-live="polite"
-                    ></span>
-                  </div>
-                </div>
-
-                <div class="contact-form__field contact-form__field--message">
-                  <label class="sr-only" for="contact-message">Mensagem</label>
-                  <textarea
-                    id="contact-message"
-                    name="mensagem"
-                    placeholder="Mensagem"
-                    rows="5"
-                    required
-                    minlength="12"
-                    aria-describedby="contact-message-error"
-                  ></textarea>
-                  <span
-                    class="contact-form__error"
-                    id="contact-message-error"
-                    data-error-for="contact-message"
-                    aria-live="polite"
-                  ></span>
-                </div>
-
-                <p
-                  class="contact-form__feedback"
-                  data-contact-feedback
-                  role="status"
-                  aria-live="polite"
-                ></p>
-
-                <button class="contact-form__submit" type="submit">
-                  <span>Enviar mensagem</span>
-                  <span class="contact-form__submit-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M4.75 12L18.5 5.75L15.25 18.25L11.75 12.75L4.75 12ZM11.75 12.75L18.5 5.75"
-                        stroke="currentColor"
-                        stroke-width="1.6"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </button>
-              </form>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <footer class="site-footer">
-        <div class="container site-footer__inner">
-          <a class="site-footer__brand" href="#inicio" aria-label="Andre Bastos">
-            <img
-              class="site-footer__logo"
-              src="assets/img/brand/logo.svg"
-              alt="Andre Bastos"
-              width="221"
-              height="71"
-            />
-          </a>
-
-          <nav class="site-footer__nav" aria-label="Links do rodapé">
-            <a href="#inicio">Início</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#servicos">Serviços</a>
-            <a href="#projetos">Projetos</a>
-            <a href="#contato">Contato</a>
-          </nav>
-
-          <p class="site-footer__copy">© 2026 Andre Bastos. Todos os direitos reservados.</p>
-
-          <a class="site-footer__top" href="#topo" aria-label="Voltar ao topo">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d="M12 18V6M12 6L7.5 10.5M12 6L16.5 10.5"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </a>
         </div>
-      </footer>
-    </div>
+      </section>
 
-    <script src="assets/js/projects-data.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
+      <section class="contact" id="contato">
+        <div class="container contact__layout">
+          <div class="contact__intro">
+            <p class="section-eyebrow">VAMOS CONVERSAR?</p>
+            <h2 class="contact__title">
+              Pronto para tirar
+              seu <span>projeto</span> do papel?
+            </h2>
+            <p class="contact__description">
+              Vamos conversar sobre suas ideias e transformar em uma solução
+              digital que gera resultados.
+            </p>
+
+            <div class="contact__actions">
+              <a class="contact-link contact-link--whatsapp" href="https://wa.me/5521992977688" target="_blank"
+                rel="noreferrer">
+                <span class="contact-link__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <use href="assets/icons/sprite.svg#icon-message-circle"></use>
+                  </svg>
+                </span>
+                <span>Falar no WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact__panel">
+            <form class="contact-form" data-contact-form novalidate>
+              <div class="contact-form__row">
+                <div class="contact-form__field">
+                  <label class="sr-only" for="contact-name">Nome</label>
+                  <input id="contact-name" name="nome" type="text" placeholder="Nome" autocomplete="name" required
+                    minlength="2" aria-describedby="contact-name-error" />
+                  <span class="contact-form__error" id="contact-name-error" data-error-for="contact-name"
+                    aria-live="polite"></span>
+                </div>
+
+                <div class="contact-form__field">
+                  <label class="sr-only" for="contact-email">E-mail</label>
+                  <input id="contact-email" name="email" type="email" placeholder="E-mail" autocomplete="email"
+                    inputmode="email" required aria-describedby="contact-email-error" />
+                  <span class="contact-form__error" id="contact-email-error" data-error-for="contact-email"
+                    aria-live="polite"></span>
+                </div>
+              </div>
+
+              <div class="contact-form__field contact-form__field--message">
+                <label class="sr-only" for="contact-message">Mensagem</label>
+                <textarea id="contact-message" name="mensagem" placeholder="Mensagem" rows="5" required minlength="12"
+                  aria-describedby="contact-message-error"></textarea>
+                <span class="contact-form__error" id="contact-message-error" data-error-for="contact-message"
+                  aria-live="polite"></span>
+              </div>
+
+              <p class="contact-form__feedback" data-contact-feedback role="status" aria-live="polite"></p>
+
+              <button class="contact-form__submit" type="submit">
+                <span>Enviar mensagem</span>
+                <span class="contact-form__submit-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M4.75 12L18.5 5.75L15.25 18.25L11.75 12.75L4.75 12ZM11.75 12.75L18.5 5.75"
+                      stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <a class="site-footer__brand" href="#inicio" aria-label="Andre Bastos">
+          <img class="site-footer__logo" src="assets/img/brand/logo.svg" alt="Andre Bastos" width="221" height="71" />
+        </a>
+
+        <nav class="site-footer__nav" aria-label="Links do rodapé">
+          <a href="#inicio">Início</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#contato">Contato</a>
+        </nav>
+
+        <p class="site-footer__copy">© 2026 Andre Bastos. Todos os direitos reservados.</p>
+
+        <a class="site-footer__top" href="#topo" aria-label="Voltar ao topo">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 18V6M12 6L7.5 10.5M12 6L16.5 10.5" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/projects-data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
 </html>

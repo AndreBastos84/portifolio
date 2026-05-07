@@ -522,9 +522,9 @@ button {
   position: absolute;
   z-index: -1;
   right: -135px;
-  top: -20px;
-  width: 1240px;
-  aspect-ratio: 1240 / 460;
+  top: -34px;
+  width: 1300px;
+  aspect-ratio: 1300 / 490;
   background: url("../img/about/about-shape.svg") no-repeat right top;
   background-size: 100% 100%;
   filter: drop-shadow(0 24px 42px rgba(0, 0, 0, 0.12));
@@ -591,6 +591,24 @@ button {
   color: var(--text-secondary);
   font-size: 1rem;
   line-height: 1.8;
+}
+
+.about__description a {
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-decoration-color: rgba(170, 205, 68, 0.48);
+  text-underline-offset: 0.18em;
+  transition:
+    color .22s ease,
+    text-decoration-color .22s ease,
+    text-underline-offset .22s ease;
+}
+
+.about__description a:hover,
+.about__description a:focus-visible {
+  color: #d7f97a;
+  text-decoration-color: rgba(215, 249, 122, 0.92);
+  text-underline-offset: 0.28em;
 }
 
 .about__description + .about__description {

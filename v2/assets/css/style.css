@@ -2177,12 +2177,36 @@ button {
 }
 
 @media (max-width: 900px) {
+  :root {
+    --mobile-header-height: 92px;
+  }
+
   .container {
     width: min(calc(100% - 28px), var(--container));
   }
 
+  .page-shell > main {
+    padding-top: var(--mobile-header-height);
+  }
+
+  .page-shell > main > section[id] {
+    scroll-margin-top: calc(var(--mobile-header-height));
+  }
+
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-top: 18px;
+    padding-bottom: 12px;
+    background: rgba(11, 15, 11, 0.78);
+    backdrop-filter: blur(18px);
+  }
+
   .site-header__inner {
     grid-template-columns: auto auto;
+    min-height: 62px;
   }
 
   .menu-toggle {
@@ -2192,10 +2216,14 @@ button {
 
   .site-nav {
       position: fixed;
-      top: 84px;
+      top: var(--mobile-header-height);
       right: 0;
       bottom: 0;
       left: 0;
+      height: calc(100vh - var(--mobile-header-height));
+      height: calc(100dvh - var(--mobile-header-height));
+      max-height: calc(100vh - var(--mobile-header-height));
+      max-height: calc(100dvh - var(--mobile-header-height));
       z-index: 15;
       display: grid;
       align-content: start;
@@ -2335,9 +2363,9 @@ button {
   }
 
   .projects {
-    padding-top: 84px;
-    padding-bottom: 108px;
-  }
+      padding-top: 40px;
+      padding-bottom: 107px;
+    }
 
   .contact {
     padding-top: 88px;
@@ -2491,12 +2519,12 @@ button {
 
 @media (max-width: 640px) {
   .site-header {
-    padding-top: 18px;
-  }
+      padding-top: 18px;
+    }
 
   .brand__logo {
-    width: 136px;
-  }
+      width: 136px;
+    }
 
   .hero {
     padding-bottom: 54px;

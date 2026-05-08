@@ -54,9 +54,9 @@
   height: 2px;
   transform: scaleX(0);
   transform-origin: left;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--accent);
-  transition: transform 180ms ease;
+  transition: transform var(--transition-fast);
 }
 
 .site-nav a.is-active {
@@ -75,14 +75,14 @@
   min-height: 48px;
   padding: 0 10px 0 18px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   color: var(--text);
   font-size: 0.88rem;
   font-weight: 600;
   transition:
-    border-color 180ms ease,
-    transform 180ms ease,
-    box-shadow 180ms ease;
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .header-cta:hover {
@@ -211,8 +211,8 @@
   width: 32px;
   height: 32px;
   padding: 0;
-  border: 1px solid rgba(170, 205, 68, 0.3);
-  border-radius: 999px;
+  border: 1px solid var(--border-accent-strong);
+  border-radius: var(--radius-pill);
   background: rgba(16, 20, 26, 0.9);
   color: var(--accent);
   font-size: 0.72rem;
@@ -227,7 +227,7 @@
   height: 62px;
   margin-top: 12px;
   margin-bottom: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-muted);
   border-radius: 50%;
   color: var(--accent);
   background:
@@ -271,7 +271,7 @@
   top: 0;
   width: min(calc(100% - 48px), var(--container));
   height: 1px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--border-muted);
   transform: translateX(-50%);
 }
 
@@ -325,23 +325,27 @@
 }
 
 .site-footer__top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 120;
   display: inline-grid;
   place-items: center;
   width: 36px;
   height: 36px;
-  border: 1px solid rgba(170, 205, 68, 0.18);
+  border: 1px solid var(--border-accent-soft);
   border-radius: 50%;
   color: var(--accent);
   transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    background-color 180ms ease,
-    box-shadow 180ms ease;
+    transform var(--transition-fast),
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .site-footer__top:hover {
   transform: translateY(-1px);
-  border-color: rgba(170, 205, 68, 0.34);
+  border-color: var(--border-accent-strong);
   background: rgba(170, 205, 68, 0.05);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.14);
 }

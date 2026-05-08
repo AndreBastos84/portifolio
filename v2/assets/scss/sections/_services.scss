@@ -71,34 +71,28 @@
   flex-direction: column;
   align-items: flex-start;
   min-height: 350px;
-  padding: 28px 24px 28px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
+  padding: var(--space-xl) var(--space-lg) var(--space-xl);
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-md);
   background:
     linear-gradient(180deg, rgba(23, 28, 34, 0.92) 0%, rgba(16, 20, 26, 0.96) 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    0 18px 32px rgba(0, 0, 0, 0.16);
+  box-shadow: var(--shadow-card);
   transition:
     min-height 280ms ease,
-    border-color 220ms ease,
-    background 220ms ease,
-    box-shadow 220ms ease,
-    transform 220ms ease;
+    border-color var(--transition-base),
+    background var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
 }
 
 .service-card:hover .service-card__holder,
 .service-card:focus-visible .service-card__holder,
 .service-card.is-expanded .service-card__holder {
   transform: translateY(-3px);
-  border-color: rgba(170, 205, 68, 0.22);
+  border-color: var(--border-accent);
   background:
     linear-gradient(180deg, rgba(26, 31, 38, 0.96) 0%, rgba(18, 23, 29, 0.98) 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 22px 42px rgba(0, 0, 0, 0.22),
-    0 0 0 1px rgba(170, 205, 68, 0.06),
-    0 24px 42px rgba(170, 205, 68, 0.08);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .service-card__icon {
@@ -112,9 +106,9 @@
   background:
     radial-gradient(circle at 50% 50%, rgba(170, 205, 68, 0.1) 0%, rgba(170, 205, 68, 0) 72%);
   transition:
-    background 220ms ease,
-    filter 220ms ease,
-    transform 220ms ease;
+    background var(--transition-base),
+    filter var(--transition-base),
+    transform var(--transition-base);
 }
 
 .service-card__icon svg {
@@ -166,17 +160,17 @@
   pointer-events: none;
   transition:
     max-height 280ms ease,
-    opacity 180ms ease,
-    transform 220ms ease,
-    margin-top 220ms ease,
-    padding-top 220ms ease,
-    border-color 220ms ease;
+    opacity var(--transition-fast),
+    transform var(--transition-base),
+    margin-top var(--transition-base),
+    padding-top var(--transition-base),
+    border-color var(--transition-base);
 }
 
 .service-card__features {
   display: grid;
-  gap: 8px;
-  margin: 0 0 18px;
+  gap: var(--space-xs);
+  margin: 0 0 var(--space-md);
   padding: 0;
   list-style: none;
 }
@@ -203,9 +197,9 @@
   gap: 4px;
   margin: 0 0 12px;
   padding: 14px 12px;
-  border: 1px solid rgba(170, 205, 68, 0.18);
+  border: 1px solid var(--border-accent-soft);
   border-radius: 12px;
-  background: rgba(170, 205, 68, 0.04);
+  background: var(--surface-accent-soft);
   text-align: center;
 }
 
@@ -232,9 +226,9 @@
   width: 100%;
   min-height: 42px;
   padding: 0 14px;
-  border: 1px solid rgba(170, 205, 68, 0.28);
-  border-radius: 999px;
-  background: rgba(170, 205, 68, 0.08);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-pill);
+  background: var(--surface-accent);
   color: var(--accent);
   font-size: 0.78rem;
   font-weight: 700;
@@ -242,16 +236,16 @@
   text-decoration: none;
   text-transform: uppercase;
   transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    color 180ms ease,
-    box-shadow 180ms ease;
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .service-card__cta:hover,
 .service-card__cta:focus-visible {
-  border-color: rgba(170, 205, 68, 0.34);
-  background: rgba(170, 205, 68, 0.14);
+  border-color: var(--border-accent-strong);
+  background: var(--surface-accent-strong);
   color: #fcfdfd;
   box-shadow: 0 10px 18px rgba(170, 205, 68, 0.08);
   outline: none;
@@ -265,9 +259,9 @@
 
 .service-card.is-expanded .service-card__details {
   max-height: 320px;
-  margin-top: 18px;
+  margin-top: var(--space-md);
   padding-top: 16px;
-  border-top-color: rgba(170, 205, 68, 0.14);
+  border-top-color: var(--surface-accent-strong);
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
@@ -287,7 +281,7 @@
   justify-content: flex-end;
   width: 100%;
   margin-top: auto;
-  padding-top: 18px;
+  padding-top: var(--space-md);
 }
 
 .service-card__arrow {
@@ -296,14 +290,14 @@
   width: 26px;
   height: 26px;
   color: var(--accent);
-  border: 1px solid rgba(170, 205, 68, 0.22);
+  border: 1px solid var(--border-accent);
   border-radius: 50%;
   opacity: 0.65;
   transition:
-    background-color 0.22s ease,
-    border-color 0.22s ease,
-    transform 0.22s ease,
-    opacity 0.22s ease;
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    transform var(--transition-base),
+    opacity var(--transition-base);
 }
 
 .service-card__arrow::before {
@@ -318,8 +312,8 @@
 
 .service-card:hover .service-card__arrow,
 .service-card:focus-visible .service-card__arrow {
-  background: rgba(170, 205, 68, 0.08);
-  border-color: rgba(170, 205, 68, 0.34);
+  background: var(--surface-accent);
+  border-color: var(--border-accent-strong);
   opacity: 1;
   transform: translateX(2px);
 }
@@ -332,7 +326,7 @@
 .service-card.is-expanded .service-card__arrow,
 .service-card.is-expanded:hover .service-card__arrow,
 .service-card.is-expanded:focus-visible .service-card__arrow {
-  background: rgba(170, 205, 68, 0.08);
+  background: var(--surface-accent);
   opacity: 1;
   transform: none;
 }

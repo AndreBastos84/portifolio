@@ -1,10 +1,55 @@
 :root {
-  --bg: #0b0f0b;
-  --bg-deep: #090d11;
-  --text: #fcfdfd;
-  --text-secondary: #a8b0a8;
-  --accent: #aacd44;
-  --border: rgba(255, 255, 255, 0.06);
-  --line: rgba(255, 255, 255, 0.08);
+  --color-bg: #0b0f0b;
+  --color-bg-deep: #090d11;
+  --color-surface: #11161d;
+  --color-surface-elevated: #171c22;
+  --color-text: #fcfdfd;
+  --color-text-secondary: #a8b0a8;
+  --color-accent: #aacd44;
+  --color-accent-soft: rgba(170, 205, 68, 0.08);
+  --color-accent-soft-strong: rgba(170, 205, 68, 0.14);
+
+  --surface-accent-soft: rgba(170, 205, 68, 0.04);
+  --surface-accent: rgba(170, 205, 68, 0.08);
+  --surface-accent-strong: rgba(170, 205, 68, 0.14);
+
+  --border-soft: rgba(255, 255, 255, 0.06);
+  --border-muted: rgba(255, 255, 255, 0.08);
+  --border-accent-soft: rgba(170, 205, 68, 0.18);
+  --border-accent: rgba(170, 205, 68, 0.22);
+  --border-accent-strong: rgba(170, 205, 68, 0.34);
+
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  --shadow-card: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 18px 32px rgba(0, 0, 0, 0.16);
+  --shadow-card-hover:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 22px 42px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(170, 205, 68, 0.06),
+    0 24px 42px rgba(170, 205, 68, 0.08);
+  --shadow-panel: 0 32px 54px rgba(0, 0, 0, 0.16);
+
+  --transition-fast: 180ms ease;
+  --transition-base: 220ms ease;
+
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 18px;
+  --space-lg: 24px;
+  --space-xl: 28px;
+
   --container: 1240px;
+
+  --bg: var(--color-bg);
+  --bg-deep: var(--color-bg-deep);
+  --text: var(--color-text);
+  --text-secondary: var(--color-text-secondary);
+  --accent: var(--color-accent);
+  --border: var(--border-soft);
+  --line: var(--border-muted);
   --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}

@@ -264,10 +264,10 @@
       visibility: hidden;
       pointer-events: none;
       transform: translateY(-8px);
-    transition:
-      opacity 180ms ease,
-      visibility 180ms ease,
-      transform 180ms ease;
+      transition:
+        opacity var(--transition-fast),
+        visibility var(--transition-fast),
+        transform var(--transition-fast);
   }
 
   .site-nav.is-open {
@@ -432,10 +432,6 @@
     white-space: normal;
   }
 
-  .site-footer__top {
-    justify-self: end;
-  }
-
   .process {
     padding-top: 84px;
     padding-bottom: 92px;
@@ -452,19 +448,13 @@
   }
 
   .process-step:not(:last-child)::after {
-    display: block;
-    top: 72px;
-    left: 31px;
-    width: 0;
-    height: calc(100% - 18px);
-    border-top: 0;
-    border-left: 1px dashed rgba(252, 253, 253, 0.2);
+    display: none;
   }
 
   .process-step:not(:last-child)::before {
     display: block;
     top: auto;
-    bottom: -2px;
+    bottom: -17px;
     left: 27px;
     right: auto;
     width: 8px;
@@ -605,7 +595,7 @@
 
   .contact__panel {
     padding: 12px;
-    border-radius: 18px;
+    border-radius: var(--radius-md);
   }
 
   .contact-form input {
@@ -648,7 +638,7 @@
   }
 
   .process__title {
-    max-width: 10ch;
+    max-width: 13ch;
   }
 
   .process-step {

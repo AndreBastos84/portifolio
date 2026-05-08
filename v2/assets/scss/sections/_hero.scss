@@ -66,7 +66,7 @@
   min-height: 34px;
   padding: 11px;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: #2b2e37;
   color: var(--text);
   font-size: 0.8rem;
@@ -124,15 +124,15 @@
   gap: 14px;
   min-height: 56px;
   padding: 0 12px 0 22px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-size: 0.92rem;
   font-weight: 600;
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    border-color 180ms ease,
-    background-color 180ms ease,
-    color 180ms ease;
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
 }
 
 .hero-button::after {
@@ -159,7 +159,7 @@
 }
 
 .hero-button--primary {
-  border: 1px solid rgba(170, 205, 68, 0.18);
+  border: 1px solid var(--border-accent-soft);
   background: var(--accent);
   color: #12150f;
   box-shadow: 0 10px 24px rgba(170, 205, 68, 0.08);
@@ -219,7 +219,7 @@
 }
 
 .hero-button--secondary:hover {
-  border-color: rgba(170, 205, 68, 0.22);
+  border-color: var(--border-accent);
   background: rgba(255, 255, 255, 0.03);
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }

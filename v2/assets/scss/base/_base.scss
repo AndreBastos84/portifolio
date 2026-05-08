@@ -7,6 +7,32 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(170, 205, 68, 0.4) rgba(9, 13, 17, 0.92);
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(9, 13, 17, 0.92);
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 3px solid rgba(9, 13, 17, 0.96);
+  border-radius: var(--radius-pill);
+  background: linear-gradient(180deg, rgba(170, 205, 68, 0.48) 0%, rgba(170, 205, 68, 0.28) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(170, 205, 68, 0.62) 0%, rgba(170, 205, 68, 0.36) 100%);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 body {

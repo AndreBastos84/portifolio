@@ -1,12 +1,48 @@
 :root {
-  --bg: #0b0f0b;
-  --bg-deep: #090d11;
-  --text: #fcfdfd;
-  --text-secondary: #a8b0a8;
-  --accent: #aacd44;
-  --border: rgba(255, 255, 255, 0.06);
-  --line: rgba(255, 255, 255, 0.08);
+  --color-bg: #0b0f0b;
+  --color-bg-deep: #090d11;
+  --color-surface: #11161d;
+  --color-surface-elevated: #171c22;
+  --color-text: #fcfdfd;
+  --color-text-secondary: #a8b0a8;
+  --color-accent: #aacd44;
+  --color-accent-soft: rgba(170, 205, 68, 0.08);
+  --color-accent-soft-strong: rgba(170, 205, 68, 0.14);
+  --surface-accent-soft: rgba(170, 205, 68, 0.04);
+  --surface-accent: rgba(170, 205, 68, 0.08);
+  --surface-accent-strong: rgba(170, 205, 68, 0.14);
+  --border-soft: rgba(255, 255, 255, 0.06);
+  --border-muted: rgba(255, 255, 255, 0.08);
+  --border-accent-soft: rgba(170, 205, 68, 0.18);
+  --border-accent: rgba(170, 205, 68, 0.22);
+  --border-accent-strong: rgba(170, 205, 68, 0.34);
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+  --shadow-card: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 18px 32px rgba(0, 0, 0, 0.16);
+  --shadow-card-hover:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 22px 42px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(170, 205, 68, 0.06),
+    0 24px 42px rgba(170, 205, 68, 0.08);
+  --shadow-panel: 0 32px 54px rgba(0, 0, 0, 0.16);
+  --transition-fast: 180ms ease;
+  --transition-base: 220ms ease;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 18px;
+  --space-lg: 24px;
+  --space-xl: 28px;
   --container: 1240px;
+  --bg: var(--color-bg);
+  --bg-deep: var(--color-bg-deep);
+  --text: var(--color-text);
+  --text-secondary: var(--color-text-secondary);
+  --accent: var(--color-accent);
+  --border: var(--border-soft);
+  --line: var(--border-muted);
   --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
 }
 
@@ -18,6 +54,32 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(170, 205, 68, 0.4) rgba(9, 13, 17, 0.92);
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(9, 13, 17, 0.92);
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 3px solid rgba(9, 13, 17, 0.96);
+  border-radius: var(--radius-pill);
+  background: linear-gradient(180deg, rgba(170, 205, 68, 0.48) 0%, rgba(170, 205, 68, 0.28) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(170, 205, 68, 0.62) 0%, rgba(170, 205, 68, 0.36) 100%);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 body {
@@ -108,9 +170,9 @@ button {
   height: 2px;
   transform: scaleX(0);
   transform-origin: left;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--accent);
-  transition: transform 180ms ease;
+  transition: transform var(--transition-fast);
 }
 
 .site-nav a.is-active {
@@ -129,14 +191,14 @@ button {
   min-height: 48px;
   padding: 0 10px 0 18px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   color: var(--text);
   font-size: 0.88rem;
   font-weight: 600;
   transition:
-    border-color 180ms ease,
-    transform 180ms ease,
-    box-shadow 180ms ease;
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .header-cta:hover {
@@ -158,14 +220,14 @@ button {
   place-items: center;
   width: 28px;
   height: 28px;
-  border: 1px solid rgba(170, 205, 68, 0.22);
+  border: 1px solid var(--border-accent);
   border-radius: 50%;
   color: var(--accent);
   transition:
-    transform 220ms ease,
-    background-color 220ms ease,
-    border-color 220ms ease,
-    color 220ms ease;
+    transform var(--transition-base),
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    color var(--transition-base);
 }
 
 .hero-button__icon::before {
@@ -274,7 +336,7 @@ button {
   min-height: 34px;
   padding: 11px;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: #2b2e37;
   color: var(--text);
   font-size: 0.8rem;
@@ -332,15 +394,15 @@ button {
   gap: 14px;
   min-height: 56px;
   padding: 0 12px 0 22px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-size: 0.92rem;
   font-weight: 600;
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    border-color 180ms ease,
-    background-color 180ms ease,
-    color 180ms ease;
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
 }
 
 .hero-button::after {
@@ -367,7 +429,7 @@ button {
 }
 
 .hero-button--primary {
-  border: 1px solid rgba(170, 205, 68, 0.18);
+  border: 1px solid var(--border-accent-soft);
   background: var(--accent);
   color: #12150f;
   box-shadow: 0 10px 24px rgba(170, 205, 68, 0.08);
@@ -427,7 +489,7 @@ button {
 }
 
 .hero-button--secondary:hover {
-  border-color: rgba(170, 205, 68, 0.22);
+  border-color: var(--border-accent);
   background: rgba(255, 255, 255, 0.03);
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
@@ -622,7 +684,7 @@ button {
 .about__highlights {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: var(--space-md);
   margin-top: 32px;
 }
 
@@ -632,8 +694,8 @@ button {
   gap: 16px;
   min-height: 110px;
   padding: 24px 22px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-md);
   background: rgba(20, 23, 28, 0.58);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
@@ -743,34 +805,28 @@ button {
   flex-direction: column;
   align-items: flex-start;
   min-height: 350px;
-  padding: 28px 24px 28px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
+  padding: var(--space-xl) var(--space-lg) var(--space-xl);
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-md);
   background:
     linear-gradient(180deg, rgba(23, 28, 34, 0.92) 0%, rgba(16, 20, 26, 0.96) 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    0 18px 32px rgba(0, 0, 0, 0.16);
+  box-shadow: var(--shadow-card);
   transition:
     min-height 280ms ease,
-    border-color 220ms ease,
-    background 220ms ease,
-    box-shadow 220ms ease,
-    transform 220ms ease;
+    border-color var(--transition-base),
+    background var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
 }
 
 .service-card:hover .service-card__holder,
 .service-card:focus-visible .service-card__holder,
 .service-card.is-expanded .service-card__holder {
   transform: translateY(-3px);
-  border-color: rgba(170, 205, 68, 0.22);
+  border-color: var(--border-accent);
   background:
     linear-gradient(180deg, rgba(26, 31, 38, 0.96) 0%, rgba(18, 23, 29, 0.98) 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 22px 42px rgba(0, 0, 0, 0.22),
-    0 0 0 1px rgba(170, 205, 68, 0.06),
-    0 24px 42px rgba(170, 205, 68, 0.08);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .service-card__icon {
@@ -784,9 +840,9 @@ button {
   background:
     radial-gradient(circle at 50% 50%, rgba(170, 205, 68, 0.1) 0%, rgba(170, 205, 68, 0) 72%);
   transition:
-    background 220ms ease,
-    filter 220ms ease,
-    transform 220ms ease;
+    background var(--transition-base),
+    filter var(--transition-base),
+    transform var(--transition-base);
 }
 
 .service-card__icon svg {
@@ -838,17 +894,17 @@ button {
   pointer-events: none;
   transition:
     max-height 280ms ease,
-    opacity 180ms ease,
-    transform 220ms ease,
-    margin-top 220ms ease,
-    padding-top 220ms ease,
-    border-color 220ms ease;
+    opacity var(--transition-fast),
+    transform var(--transition-base),
+    margin-top var(--transition-base),
+    padding-top var(--transition-base),
+    border-color var(--transition-base);
 }
 
 .service-card__features {
   display: grid;
-  gap: 8px;
-  margin: 0 0 18px;
+  gap: var(--space-xs);
+  margin: 0 0 var(--space-md);
   padding: 0;
   list-style: none;
 }
@@ -875,9 +931,9 @@ button {
   gap: 4px;
   margin: 0 0 12px;
   padding: 14px 12px;
-  border: 1px solid rgba(170, 205, 68, 0.18);
+  border: 1px solid var(--border-accent-soft);
   border-radius: 12px;
-  background: rgba(170, 205, 68, 0.04);
+  background: var(--surface-accent-soft);
   text-align: center;
 }
 
@@ -904,9 +960,9 @@ button {
   width: 100%;
   min-height: 42px;
   padding: 0 14px;
-  border: 1px solid rgba(170, 205, 68, 0.28);
-  border-radius: 999px;
-  background: rgba(170, 205, 68, 0.08);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-pill);
+  background: var(--surface-accent);
   color: var(--accent);
   font-size: 0.78rem;
   font-weight: 700;
@@ -914,16 +970,16 @@ button {
   text-decoration: none;
   text-transform: uppercase;
   transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    color 180ms ease,
-    box-shadow 180ms ease;
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .service-card__cta:hover,
 .service-card__cta:focus-visible {
-  border-color: rgba(170, 205, 68, 0.34);
-  background: rgba(170, 205, 68, 0.14);
+  border-color: var(--border-accent-strong);
+  background: var(--surface-accent-strong);
   color: #fcfdfd;
   box-shadow: 0 10px 18px rgba(170, 205, 68, 0.08);
   outline: none;
@@ -937,9 +993,9 @@ button {
 
 .service-card.is-expanded .service-card__details {
   max-height: 320px;
-  margin-top: 18px;
+  margin-top: var(--space-md);
   padding-top: 16px;
-  border-top-color: rgba(170, 205, 68, 0.14);
+  border-top-color: var(--surface-accent-strong);
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
@@ -959,7 +1015,7 @@ button {
   justify-content: flex-end;
   width: 100%;
   margin-top: auto;
-  padding-top: 18px;
+  padding-top: var(--space-md);
 }
 
 .service-card__arrow {
@@ -968,14 +1024,14 @@ button {
   width: 26px;
   height: 26px;
   color: var(--accent);
-  border: 1px solid rgba(170, 205, 68, 0.22);
+  border: 1px solid var(--border-accent);
   border-radius: 50%;
   opacity: 0.65;
   transition:
-    background-color 0.22s ease,
-    border-color 0.22s ease,
-    transform 0.22s ease,
-    opacity 0.22s ease;
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    transform var(--transition-base),
+    opacity var(--transition-base);
 }
 
 .service-card__arrow::before {
@@ -990,8 +1046,8 @@ button {
 
 .service-card:hover .service-card__arrow,
 .service-card:focus-visible .service-card__arrow {
-  background: rgba(170, 205, 68, 0.08);
-  border-color: rgba(170, 205, 68, 0.34);
+  background: var(--surface-accent);
+  border-color: var(--border-accent-strong);
   opacity: 1;
   transform: translateX(2px);
 }
@@ -1004,7 +1060,7 @@ button {
 .service-card.is-expanded .service-card__arrow,
 .service-card.is-expanded:hover .service-card__arrow,
 .service-card.is-expanded:focus-visible .service-card__arrow {
-  background: rgba(170, 205, 68, 0.08);
+  background: var(--surface-accent);
   opacity: 1;
   transform: none;
 }
@@ -1134,8 +1190,8 @@ button {
   width: 32px;
   height: 32px;
   padding: 0;
-  border: 1px solid rgba(170, 205, 68, 0.3);
-  border-radius: 999px;
+  border: 1px solid var(--border-accent-strong);
+  border-radius: var(--radius-pill);
   background: rgba(16, 20, 26, 0.9);
   color: var(--accent);
   font-size: 0.72rem;
@@ -1150,7 +1206,7 @@ button {
   height: 62px;
   margin-top: 12px;
   margin-bottom: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-muted);
   border-radius: 50%;
   color: var(--accent);
   background:
@@ -1257,19 +1313,19 @@ button {
   min-height: 52px;
   padding: 0 18px 0 14px;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   color: #f4f6f7;
   font-size: 0.92rem;
   font-weight: 500;
   transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    transform 180ms ease,
-    box-shadow 180ms ease;
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .contact-link:hover {
-  border-color: rgba(170, 205, 68, 0.28);
+  border-color: var(--border-accent);
   background: rgba(255, 255, 255, 0.03);
   transform: translateY(-1px);
   box-shadow: 0 14px 26px rgba(0, 0, 0, 0.16);
@@ -1280,7 +1336,7 @@ button {
   place-items: center;
   width: 32px;
   height: 32px;
-  border: 1px solid rgba(170, 205, 68, 0.22);
+  border: 1px solid var(--border-accent);
   border-radius: 50%;
   color: var(--accent);
 }
@@ -1307,8 +1363,8 @@ button {
 .contact__panel {
   align-self: end;
   padding: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 22px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
   background:
     linear-gradient(180deg, rgba(20, 24, 30, 0.94) 0%, rgba(15, 19, 24, 0.98) 100%);
   box-shadow:
@@ -1339,15 +1395,15 @@ button {
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.02);
   color: var(--text);
   font: inherit;
   transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    box-shadow 180ms ease;
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .contact-form input {
@@ -1369,7 +1425,7 @@ button {
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  border-color: rgba(170, 205, 68, 0.34);
+  border-color: var(--border-accent-strong);
   background: rgba(255, 255, 255, 0.03);
   box-shadow: 0 0 0 3px rgba(170, 205, 68, 0.08);
 }
@@ -1408,7 +1464,7 @@ button {
   min-height: 52px;
   padding: 0 18px 0 20px;
   border: 0;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background: linear-gradient(90deg, #a6c93e 0%, #b2da45 100%);
   color: #11161d;
   font: inherit;
@@ -1416,9 +1472,9 @@ button {
   font-weight: 700;
   cursor: pointer;
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    filter 180ms ease;
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    filter var(--transition-fast);
 }
 
 .contact-form__submit:hover {
@@ -1452,7 +1508,7 @@ button {
   top: 0;
   width: min(calc(100% - 48px), var(--container));
   height: 1px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--border-muted);
   transform: translateX(-50%);
 }
 
@@ -1506,23 +1562,27 @@ button {
 }
 
 .site-footer__top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 120;
   display: inline-grid;
   place-items: center;
   width: 36px;
   height: 36px;
-  border: 1px solid rgba(170, 205, 68, 0.18);
+  border: 1px solid var(--border-accent-soft);
   border-radius: 50%;
   color: var(--accent);
   transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    background-color 180ms ease,
-    box-shadow 180ms ease;
+    transform var(--transition-fast),
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .site-footer__top:hover {
   transform: translateY(-1px);
-  border-color: rgba(170, 205, 68, 0.34);
+  border-color: var(--border-accent-strong);
   background: rgba(170, 205, 68, 0.05);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.14);
 }
@@ -1574,16 +1634,16 @@ button {
   padding: 0;
   overflow: hidden;
   border: 1px solid rgba(13, 17, 22, 0.08);
-  border-radius: 18px;
+  border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.76);
   cursor: pointer;
   text-align: left;
   color: #1a1f25;
   isolation: isolate;
   transition:
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    background-color 180ms ease;
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
 }
 
 .project-nav.is-active {
@@ -1628,7 +1688,7 @@ button {
 .project-nav__media::before {
   z-index: 1;
   background: linear-gradient(90deg, rgba(9, 12, 15, 0.38) 0%, rgba(9, 12, 15, 0.18) 42%, rgba(9, 12, 15, 0) 88%);
-  transition: opacity 220ms ease, background-color 220ms ease;
+  transition: opacity var(--transition-base), background-color var(--transition-base);
 }
 
 .project-nav__media::after {
@@ -1647,7 +1707,7 @@ button {
   transform: translateX(-135%) skewX(-18deg);
   transition:
     transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 220ms ease;
+    opacity var(--transition-base);
 }
 
 .project-nav__number {
@@ -1667,9 +1727,9 @@ button {
   transform: translateY(-50%);
   backdrop-filter: blur(6px);
   transition:
-    background-color 180ms ease,
-    color 180ms ease,
-    box-shadow 180ms ease;
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .project-nav.is-active .project-nav__number {
@@ -1725,8 +1785,8 @@ button {
   line-height: 1.3;
   overflow: hidden;
   transition:
-    transform 220ms ease,
-    color 220ms ease;
+    transform var(--transition-base),
+    color var(--transition-base);
 }
 
 .project-nav:hover .project-nav__name {
@@ -1741,7 +1801,7 @@ button {
   min-height: 54px;
   padding: 0 16px 0 22px;
   border: 1px solid rgba(17, 22, 27, 0.12);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   color: #21272d;
   font-size: 0.92rem;
   font-weight: 500;
@@ -1771,10 +1831,10 @@ button {
 
 .projects-panel {
   padding: 18px;
-  border-radius: 28px;
+  border-radius: var(--radius-xl);
   background:
     linear-gradient(180deg, rgba(23, 28, 34, 0.92) 0%, rgba(16, 20, 26, 0.96) 100%);
-  box-shadow: 0 32px 54px rgba(0, 0, 0, 0.16);
+  box-shadow: var(--shadow-panel);
 }
 
 .projects-panel__hero {
@@ -1784,7 +1844,7 @@ button {
   align-items: stretch;
   min-height: 360px;
   overflow: hidden;
-  border-radius: 22px;
+  border-radius: var(--radius-lg);
   background:
     linear-gradient(90deg, rgba(12, 16, 22, 0.98) 0%, rgba(12, 16, 22, 0.94) 40%, rgba(12, 16, 22, 0.36) 72%, rgba(12, 16, 22, 0.1) 100%);
 }
@@ -1803,9 +1863,9 @@ button {
   position: relative;
   z-index: 1;
   transition:
-    opacity 180ms ease,
-    transform 220ms ease,
-    filter 220ms ease;
+    opacity var(--transition-fast),
+    transform var(--transition-base),
+    filter var(--transition-base);
 }
 
 .projects-panel__copy {
@@ -1851,7 +1911,7 @@ button {
 .projects-panel__tags li {
   padding: 8px 12px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   color: rgba(252, 253, 253, 0.78);
   font-size: 0.82rem;
   font-weight: 500;
@@ -1870,15 +1930,15 @@ button {
 }
 
 .projects-panel__report {
-  margin-top: 18px;
+  margin-top: var(--space-md);
   padding: 18px 18px 0;
-  border-radius: 22px;
+  border-radius: var(--radius-lg);
   background: #fbf9f2;
   color: #191d22;
   transition:
-    opacity 180ms ease,
-    transform 220ms ease,
-    filter 220ms ease;
+    opacity var(--transition-fast),
+    transform var(--transition-base),
+    filter var(--transition-base);
 }
 
 .projects-panel.is-switching .projects-panel__copy,
@@ -2258,10 +2318,10 @@ button {
       visibility: hidden;
       pointer-events: none;
       transform: translateY(-8px);
-    transition:
-      opacity 180ms ease,
-      visibility 180ms ease,
-      transform 180ms ease;
+      transition:
+      opacity var(--transition-fast),
+      visibility var(--transition-fast),
+      transform var(--transition-fast);
   }
 
   .site-nav.is-open {
@@ -2426,10 +2486,6 @@ button {
     white-space: normal;
   }
 
-  .site-footer__top {
-    justify-self: end;
-  }
-
   .process {
     padding-top: 84px;
     padding-bottom: 92px;
@@ -2446,19 +2502,13 @@ button {
   }
 
   .process-step:not(:last-child)::after {
-    display: block;
-    top: 72px;
-    left: 31px;
-    width: 0;
-    height: calc(100% - 18px);
-    border-top: 0;
-    border-left: 1px dashed rgba(252, 253, 253, 0.2);
+    display: none;
   }
 
   .process-step:not(:last-child)::before {
     display: block;
     top: auto;
-    bottom: -2px;
+    bottom: -17px;
     left: 27px;
     right: auto;
     width: 8px;
@@ -2599,7 +2649,7 @@ button {
 
   .contact__panel {
     padding: 12px;
-    border-radius: 18px;
+    border-radius: var(--radius-md);
   }
 
   .contact-form input {
@@ -2642,7 +2692,7 @@ button {
   }
 
   .process__title {
-    max-width: 10ch;
+    max-width: 13ch;
   }
 
   .process-step {

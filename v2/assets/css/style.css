@@ -1588,7 +1588,8 @@ button {
 
 .project-nav.is-active {
   border: 0;
-  background: #11161d;
+  background:
+    linear-gradient(180deg, rgba(23, 28, 34, 0.92) 0%, rgba(16, 20, 26, 0.96) 100%);
   color: #fcfdfd;
   box-shadow: 0 16px 26px rgba(16, 22, 28, 0.08);
 }
@@ -1601,7 +1602,8 @@ button {
 
 .project-nav.is-active:hover {
   border: 0;
-  background: #11161d;
+  background:
+    linear-gradient(180deg, rgba(23, 28, 34, 0.92) 0%, rgba(16, 20, 26, 0.96) 100%);
   color: #fcfdfd;
   box-shadow: 0 16px 26px rgba(16, 22, 28, 0.08);
 }
@@ -1770,7 +1772,8 @@ button {
 .projects-panel {
   padding: 18px;
   border-radius: 28px;
-  background: #11161d;
+  background:
+    linear-gradient(180deg, rgba(23, 28, 34, 0.92) 0%, rgba(16, 20, 26, 0.96) 100%);
   box-shadow: 0 32px 54px rgba(0, 0, 0, 0.16);
 }
 

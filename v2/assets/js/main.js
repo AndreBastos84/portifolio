@@ -491,6 +491,7 @@
   }
 
   function initProjects() {
+    const DEFAULT_PROJECT_ID = "osjcg";
     const PROJECT_SWITCH_DURATION = 180;
     const projectData = window.PROJECTS_DATA;
     const triggers = document.querySelectorAll("[data-project-trigger]");
@@ -509,10 +510,36 @@
       return;
     }
 
+    const projectIds = Object.keys(projectData);
     let activeProjectId = null;
     let projectSwitchTimer = null;
 
-    function scrollProjectsIntoView() {
+    function isValidProjectId(projectId) {
+      return projectIds.includes(projectId);
+    }
+
+    function getProjectIdFromHash() {
+      const hash = window.location.hash.slice(1).trim();
+
+      if (!hash) {
+        return null;
+      }
+
+      const projectId = decodeURIComponent(hash);
+      return isValidProjectId(projectId) ? projectId : null;
+    }
+
+    function updateProjectHash(projectId) {
+      if (!isValidProjectId(projectId)) {
+        return;
+      }
+
+      const nextUrl = `${window.location.pathname}${window.location.search}#${projectId}`;
+      window.history.replaceState(null, "", nextUrl);
+    }
+
+    function scrollProjectsIntoView(options = {}) {
+      const { behavior = "smooth" } = options;
       const scrollTarget = panel instanceof HTMLElement ? panel : layout;
 
       if (!(scrollTarget instanceof HTMLElement)) {
@@ -520,7 +547,7 @@
       }
 
       scrollTarget.scrollIntoView({
-        behavior: "smooth",
+        behavior,
         block: "start",
       });
     }
@@ -553,7 +580,7 @@
     }
 
     function setActiveProject(projectId, options = {}) {
-      const { immediate = false } = options;
+      const { immediate = false, updateHash = true } = options;
       const project = projectData[projectId];
 
       if (!project) {
@@ -561,6 +588,9 @@
       }
 
       if (activeProjectId === projectId && !immediate) {
+        if (updateHash) {
+          updateProjectHash(projectId);
+        }
         return;
       }
 
@@ -569,6 +599,10 @@
         trigger.classList.toggle("is-active", isActive);
         trigger.setAttribute("aria-selected", String(isActive));
       });
+
+      if (updateHash) {
+        updateProjectHash(projectId);
+      }
 
       if (projectSwitchTimer) {
         window.clearTimeout(projectSwitchTimer);
@@ -595,6 +629,28 @@
       }, PROJECT_SWITCH_DURATION / 2);
     }
 
+    function syncProjectFromHash(options = {}) {
+      const { scroll = false, immediate = true } = options;
+      const projectId = getProjectIdFromHash();
+
+      if (!projectId) {
+        return false;
+      }
+
+      setActiveProject(projectId, {
+        immediate,
+        updateHash: false,
+      });
+
+      if (scroll) {
+        scrollProjectsIntoView({
+          behavior: immediate ? "auto" : "smooth",
+        });
+      }
+
+      return true;
+    }
+
     triggers.forEach((trigger) => {
       trigger.addEventListener("click", () => {
         const projectId = trigger.getAttribute("data-project-id");
@@ -608,8 +664,20 @@
       });
     });
 
-      setActiveProject("project-01", { immediate: true });
+    window.addEventListener("hashchange", () => {
+      syncProjectFromHash({
+        scroll: true,
+        immediate: false,
+      });
+    });
+
+    if (!syncProjectFromHash({ scroll: true, immediate: true })) {
+      setActiveProject(DEFAULT_PROJECT_ID, {
+        immediate: true,
+        updateHash: false,
+      });
     }
+  }
 
   function init() {
     if (menuToggle) {

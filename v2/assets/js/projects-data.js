@@ -1,5 +1,5 @@
 window.PROJECTS_DATA = {
-  "project-01": {
+  osjcg: {
     number: "01",
     kicker: "WEBSITE",
     title: "Orquestra Sinfônica Juvenil Chiquinha Gonzaga",
@@ -29,7 +29,7 @@ window.PROJECTS_DATA = {
     thumb: "assets/img/projects/projeto-01-thumb.webp",
     image: "assets/img/projects/full/projeto-01.webp",
   },
-  "project-02": {
+  ambev: {
     number: "02",
     kicker: "E-mail Marketing",
     title: "AMBEV",
@@ -51,7 +51,7 @@ window.PROJECTS_DATA = {
       },
       {
         title: "IMPLEMENTAÇÃO",
-        text: "Enrega de arquivos com adaptação responsiva e preparados para implementação em plataforma de e-mail marketing.",
+        text: "Entrega de arquivos com adaptação responsiva e preparados para implementação em plataforma de e-mail marketing.",
       },
     ],
     stack: ["html5", "css3"],
@@ -59,7 +59,7 @@ window.PROJECTS_DATA = {
     thumb: "assets/img/projects/projeto-02-thumb.webp",
     image: "assets/img/projects/full/projeto-02.webp",
   },
-  "project-03": {
+  ibme: {
     number: "03",
     kicker: "INSTITUCIONAL",
     title: "IBME",
@@ -89,7 +89,7 @@ window.PROJECTS_DATA = {
     thumb: "assets/img/projects/projeto-03-thumb.webp",
     image: "assets/img/projects/full/projeto-03.webp",
   },
-  "project-04": {
+  "sinta-o-som": {
     number: "04",
     kicker: "INSTITUCIONAL",
     title: "Sinta o Som",
@@ -119,7 +119,7 @@ window.PROJECTS_DATA = {
     thumb: "assets/img/projects/projeto-04-thumb.webp",
     image: "assets/img/projects/full/projeto-04.webp",
   },
-  "project-05": {
+  "oddly-experience": {
     number: "05",
     kicker: "INSTITUCIONAL",
     title: "Oddly Experience",
@@ -149,7 +149,7 @@ window.PROJECTS_DATA = {
     thumb: "assets/img/projects/projeto-05-thumb.webp",
     image: "assets/img/projects/full/projeto-05.webp",
   },
-  "project-06": {
+  futurecoat: {
     number: "06",
     kicker: "INSTITUCIONAL",
     title: "FutureCoat",

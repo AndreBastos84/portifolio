@@ -491,6 +491,7 @@
   }
 
   function initProjects() {
+    const PROJECT_SWITCH_DURATION = 180;
     const projectData = window.PROJECTS_DATA;
     const triggers = document.querySelectorAll("[data-project-trigger]");
     const layout = document.querySelector(".projects__layout");
@@ -508,6 +509,9 @@
       return;
     }
 
+    let activeProjectId = null;
+    let projectSwitchTimer = null;
+
     function scrollProjectsIntoView() {
       const scrollTarget = panel instanceof HTMLElement ? panel : layout;
 
@@ -521,19 +525,7 @@
       });
     }
 
-    function setActiveProject(projectId) {
-      const project = projectData[projectId];
-
-      if (!project) {
-        return;
-      }
-
-      triggers.forEach((trigger) => {
-        const isActive = trigger.getAttribute("data-project-id") === projectId;
-        trigger.classList.toggle("is-active", isActive);
-        trigger.setAttribute("aria-selected", String(isActive));
-      });
-
+    function applyProjectContent(project) {
       if (kicker) {
         kicker.textContent = project.kicker;
       }
@@ -560,6 +552,49 @@
       renderProjectStack(stack, project.stack);
     }
 
+    function setActiveProject(projectId, options = {}) {
+      const { immediate = false } = options;
+      const project = projectData[projectId];
+
+      if (!project) {
+        return;
+      }
+
+      if (activeProjectId === projectId && !immediate) {
+        return;
+      }
+
+      triggers.forEach((trigger) => {
+        const isActive = trigger.getAttribute("data-project-id") === projectId;
+        trigger.classList.toggle("is-active", isActive);
+        trigger.setAttribute("aria-selected", String(isActive));
+      });
+
+      if (projectSwitchTimer) {
+        window.clearTimeout(projectSwitchTimer);
+        projectSwitchTimer = null;
+      }
+
+      if (immediate || !(panel instanceof HTMLElement)) {
+        applyProjectContent(project);
+        activeProjectId = projectId;
+        panel?.classList.remove("is-switching");
+        return;
+      }
+
+      panel.classList.add("is-switching");
+
+      projectSwitchTimer = window.setTimeout(() => {
+        applyProjectContent(project);
+        activeProjectId = projectId;
+        projectSwitchTimer = null;
+
+        window.requestAnimationFrame(() => {
+          panel.classList.remove("is-switching");
+        });
+      }, PROJECT_SWITCH_DURATION / 2);
+    }
+
     triggers.forEach((trigger) => {
       trigger.addEventListener("click", () => {
         const projectId = trigger.getAttribute("data-project-id");
@@ -573,8 +608,8 @@
       });
     });
 
-    setActiveProject("project-01");
-  }
+      setActiveProject("project-01", { immediate: true });
+    }
 
   function init() {
     if (menuToggle) {

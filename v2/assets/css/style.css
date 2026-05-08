@@ -2356,11 +2356,10 @@ button {
   }
 
   .services::after {
-    left: -18px;
-    width: min(520px, 90vw);
-    bottom: -2px;
-    opacity: 0.9;
-  }
+      left: -18px;
+      width: min(520px, 90vw);
+      bottom: -2px;
+    }
 
   .projects {
       padding-top: 40px;

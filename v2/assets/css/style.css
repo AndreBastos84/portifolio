@@ -668,8 +668,9 @@ button {
 
 .services {
   position: relative;
-  padding: 28px 0 108px;
-  overflow: clip;
+  z-index: 2;
+  padding: 28px 0 80px;
+  overflow: visible;
 }
 
 .services::after {
@@ -677,19 +678,21 @@ button {
   position: absolute;
   left: -24px;
   bottom: -2px;
-  width: min(620px, 46vw);
+  width: min(560px, 40vw);
   aspect-ratio: 352 / 94;
   background: url("../img/ui/services-wave.svg") no-repeat left bottom / 100% 100%;
   z-index: 0;
+  pointer-events: none;
 }
 
 .services__grid {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: grid;
   grid-template-columns: minmax(240px, 0.78fr) minmax(0, 1.72fr);
   gap: 34px;
   align-items: start;
+  overflow: visible;
 }
 
 .services__intro {
@@ -710,17 +713,32 @@ button {
 }
 
 .services__cards {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
+  overflow: visible;
 }
 
 .service-card {
   position: relative;
+  min-height: 350px;
+  cursor: pointer;
+  isolation: isolate;
+}
+
+.service-card:focus-visible {
+  outline: none;
+}
+
+.service-card__holder {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  min-height: 260px;
+  min-height: 350px;
   padding: 28px 24px 28px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 18px;
@@ -729,17 +747,17 @@ button {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.03),
     0 18px 32px rgba(0, 0, 0, 0.16);
-  cursor: pointer;
   transition:
-    transform 220ms ease,
+    min-height 280ms ease,
     border-color 220ms ease,
     background 220ms ease,
-    box-shadow 220ms ease;
+    box-shadow 220ms ease,
+    transform 220ms ease;
 }
 
-.service-card:hover,
-.service-card:focus-visible,
-.service-card.is-expanded {
+.service-card:hover .service-card__holder,
+.service-card:focus-visible .service-card__holder,
+.service-card.is-expanded .service-card__holder {
   transform: translateY(-3px);
   border-color: rgba(170, 205, 68, 0.22);
   background:
@@ -749,10 +767,6 @@ button {
     0 22px 42px rgba(0, 0, 0, 0.22),
     0 0 0 1px rgba(170, 205, 68, 0.06),
     0 24px 42px rgba(170, 205, 68, 0.08);
-}
-
-.service-card:focus-visible {
-  outline: none;
 }
 
 .service-card__icon {
@@ -844,7 +858,7 @@ button {
 }
 
 .service-card__features li::before {
-  content: "✓";
+  content: "\2713";
   position: absolute;
   left: 0;
   top: 0;
@@ -918,13 +932,22 @@ button {
 }
 
 .service-card.is-expanded .service-card__details {
-  max-height: 520px;
+  max-height: 320px;
   margin-top: 18px;
   padding-top: 16px;
   border-top-color: rgba(170, 205, 68, 0.14);
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+}
+
+.service-card.is-expanded {
+  z-index: 20;
+}
+
+.service-card.is-expanded .service-card__holder {
+  z-index: 20;
+  min-height: 635px;
 }
 
 .service-card__footer {
@@ -986,6 +1009,22 @@ button {
 .service-card.is-expanded:hover .service-card__arrow::before,
 .service-card.is-expanded:focus-visible .service-card__arrow::before {
   transform: translateY(-1px) rotate(135deg);
+}
+
+@media (max-width: 900px) {
+  .service-card {
+    min-height: auto;
+  }
+
+  .service-card__holder {
+    position: relative;
+    inset: auto;
+    min-height: auto;
+  }
+
+  .service-card.is-expanded .service-card__holder {
+    min-height: auto;
+  }
 }
 
 .projects {
@@ -2182,6 +2221,15 @@ button {
     padding-top: 0;
   }
 
+  .hero__visual {
+    order: -1;
+  }
+
+  .hero__content {
+    order: 1;
+    padding-top: 0;
+  }
+
   .hero h1 {
     font-size: clamp(3.2rem, 13vw, 4.8rem);
   }
@@ -2559,6 +2607,11 @@ button {
     font-size: 0.9rem;
   }
 
+  .service-card__icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
   .services::after {
     left: -12px;
     width: min(460px, 88vw);
@@ -2611,3 +2664,4 @@ button {
     scroll-behavior: auto !important;
   }
 }
+

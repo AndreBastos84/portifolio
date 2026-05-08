@@ -232,6 +232,145 @@
     });
   }
 
+  function initServiceCards() {
+    const cards = Array.from(document.querySelectorAll("[data-service-card]")).filter(
+      (card) => card instanceof HTMLElement,
+    );
+
+    if (!cards.length) {
+      return;
+    }
+
+    let expandedCard = cards.find((card) => card.classList.contains("is-expanded")) || null;
+    const hoverQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+    function supportsHoverInteraction() {
+      return hoverQuery.matches;
+    }
+
+    function syncCardState(card, isExpanded) {
+      const details = card.querySelector(".service-card__details");
+
+      card.classList.toggle("is-expanded", isExpanded);
+      card.setAttribute("aria-expanded", String(isExpanded));
+
+      if (details instanceof HTMLElement) {
+        details.setAttribute("aria-hidden", String(!isExpanded));
+      }
+    }
+
+    function collapseCard(card) {
+      if (!(card instanceof HTMLElement)) {
+        return;
+      }
+
+      syncCardState(card, false);
+
+      if (expandedCard === card) {
+        expandedCard = null;
+      }
+    }
+
+    function expandCard(card) {
+      if (!(card instanceof HTMLElement)) {
+        return;
+      }
+
+      if (expandedCard && expandedCard !== card) {
+        collapseCard(expandedCard);
+      }
+
+      syncCardState(card, true);
+      expandedCard = card;
+    }
+
+    function toggleCard(card) {
+      if (card.classList.contains("is-expanded")) {
+        collapseCard(card);
+        return;
+      }
+
+      expandCard(card);
+    }
+
+    cards.forEach((card, index) => {
+      const details = card.querySelector(".service-card__details");
+      const cta = card.querySelector(".service-card__cta");
+
+      if (details instanceof HTMLElement && !details.id) {
+        details.id = `service-card-details-${index + 1}`;
+        card.setAttribute("aria-controls", details.id);
+      }
+
+      syncCardState(card, card.classList.contains("is-expanded"));
+
+      card.addEventListener("click", (event) => {
+        const target = event.target;
+
+        if (target instanceof Element && target.closest(".service-card__cta")) {
+          return;
+        }
+
+        if (supportsHoverInteraction()) {
+          return;
+        }
+
+        toggleCard(card);
+      });
+
+      card.addEventListener("mouseenter", () => {
+        if (!supportsHoverInteraction()) {
+          return;
+        }
+
+        expandCard(card);
+      });
+
+      card.addEventListener("mouseleave", () => {
+        if (!supportsHoverInteraction()) {
+          return;
+        }
+
+        collapseCard(card);
+      });
+
+      card.addEventListener("focusin", () => {
+        expandCard(card);
+      });
+
+      card.addEventListener("focusout", (event) => {
+        const relatedTarget = event.relatedTarget;
+
+        if (relatedTarget instanceof Node && card.contains(relatedTarget)) {
+          return;
+        }
+
+        collapseCard(card);
+      });
+
+      card.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") {
+          return;
+        }
+
+        const target = event.target;
+
+        if (target instanceof Element && target.closest(".service-card__cta")) {
+          return;
+        }
+
+        event.preventDefault();
+        toggleCard(card);
+      });
+
+      if (cta instanceof HTMLAnchorElement) {
+        cta.addEventListener("click", (event) => {
+          event.stopPropagation();
+        });
+      }
+    });
+  }
+
   function renderProjectSections(container, sections) {
     if (!(container instanceof HTMLElement)) {
       return;
@@ -381,6 +520,7 @@
 
     bindNavigation();
     initContactForm();
+    initServiceCards();
     initProjects();
     window.addEventListener("resize", handleResize);
   }

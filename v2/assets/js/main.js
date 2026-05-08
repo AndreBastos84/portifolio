@@ -56,13 +56,22 @@
   const siteNav = document.querySelector(".site-nav");
   const navLinks = document.querySelectorAll('.site-nav a[href^="#"]');
 
+  function setMenuState(isOpen) {
+    if (!menuToggle || !siteNav) {
+      return;
+    }
+
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    siteNav.classList.toggle("is-open", isOpen);
+    document.body.classList.toggle("menu-open", isOpen);
+  }
+
   function closeMenu() {
     if (!menuToggle || !siteNav) {
       return;
     }
 
-    menuToggle.setAttribute("aria-expanded", "false");
-    siteNav.classList.remove("is-open");
+    setMenuState(false);
   }
 
   function toggleMenu() {
@@ -72,8 +81,7 @@
 
     const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
 
-    menuToggle.setAttribute("aria-expanded", String(!isExpanded));
-    siteNav.classList.toggle("is-open", !isExpanded);
+    setMenuState(!isExpanded);
   }
 
   function bindNavigation() {
@@ -312,6 +320,7 @@
         }
 
         if (supportsHoverInteraction()) {
+          expandCard(card);
           return;
         }
 
@@ -446,6 +455,8 @@
   function initProjects() {
     const projectData = window.PROJECTS_DATA;
     const triggers = document.querySelectorAll("[data-project-trigger]");
+    const layout = document.querySelector(".projects__layout");
+    const panel = document.querySelector(".projects-panel");
     const kicker = document.querySelector("[data-project-kicker]");
     const title = document.querySelector("[data-project-title]");
     const summary = document.querySelector("[data-project-summary]");
@@ -457,6 +468,19 @@
 
     if (!projectData || !triggers.length) {
       return;
+    }
+
+    function scrollProjectsIntoView() {
+      const scrollTarget = panel instanceof HTMLElement ? panel : layout;
+
+      if (!(scrollTarget instanceof HTMLElement)) {
+        return;
+      }
+
+      scrollTarget.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }
 
     function setActiveProject(projectId) {
@@ -507,6 +531,7 @@
         }
 
         setActiveProject(projectId);
+        scrollProjectsIntoView();
       });
     });
 

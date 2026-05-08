@@ -250,6 +250,7 @@
     }
 
     let expandedCard = cards.find((card) => card.classList.contains("is-expanded")) || null;
+    let keyboardInteraction = false;
     const hoverQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
 
     function supportsHoverInteraction() {
@@ -262,9 +263,9 @@
       card.classList.toggle("is-expanded", isExpanded);
       card.setAttribute("aria-expanded", String(isExpanded));
 
-      if (details instanceof HTMLElement) {
-        details.setAttribute("aria-hidden", String(!isExpanded));
-      }
+        if (details instanceof HTMLElement) {
+          details.setAttribute("aria-hidden", String(!isExpanded));
+        }
     }
 
     function collapseCard(card) {
@@ -312,6 +313,18 @@
 
       syncCardState(card, card.classList.contains("is-expanded"));
 
+      card.addEventListener("mousedown", (event) => {
+        const target = event.target;
+
+        if (target instanceof Element && target.closest(".service-card__cta")) {
+          return;
+        }
+
+        if (supportsHoverInteraction() && event.button === 0) {
+          event.preventDefault();
+        }
+      });
+
       card.addEventListener("click", (event) => {
         const target = event.target;
 
@@ -344,10 +357,18 @@
       });
 
       card.addEventListener("focusin", () => {
+        if (!keyboardInteraction) {
+          return;
+        }
+
         expandCard(card);
       });
 
       card.addEventListener("focusout", (event) => {
+        if (!keyboardInteraction) {
+          return;
+        }
+
         const relatedTarget = event.relatedTarget;
 
         if (relatedTarget instanceof Node && card.contains(relatedTarget)) {
@@ -369,6 +390,7 @@
         }
 
         event.preventDefault();
+        keyboardInteraction = true;
         toggleCard(card);
       });
 
@@ -378,6 +400,22 @@
         });
       }
     });
+
+    document.addEventListener(
+      "keydown",
+      () => {
+        keyboardInteraction = true;
+      },
+      true,
+    );
+
+    document.addEventListener(
+      "pointerdown",
+      () => {
+        keyboardInteraction = false;
+      },
+      true,
+    );
   }
 
   function renderProjectSections(container, sections) {

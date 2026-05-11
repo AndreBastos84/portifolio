@@ -54,6 +54,7 @@
 
   const menuToggle = document.querySelector(".menu-toggle");
   const siteNav = document.querySelector(".site-nav");
+  const siteHeader = document.querySelector(".site-header");
   const navLinks = document.querySelectorAll('.site-nav a[href^="#"]');
 
   function setMenuState(isOpen) {
@@ -114,24 +115,43 @@
       return;
     }
 
+    const endpoint = form.dataset.contactEndpoint || "contact.php";
     const feedback = form.querySelector("[data-contact-feedback]");
+    const submitButton = form.querySelector(".contact-form__submit");
+    const submitLabel = submitButton?.querySelector("span");
 
     const fields = Array.from(
       form.querySelectorAll("input, textarea"),
-    ).filter((field) => field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement);
+    ).filter((field) => {
+      if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) {
+        return false;
+      }
+
+      return field.name !== "website";
+    });
+
+    const fieldIdByName = {
+      nome: "contact-name",
+      email: "contact-email",
+      mensagem: "contact-message",
+      website: "contact-website",
+    };
 
     const errorMap = {
       "contact-name": {
         valueMissing: "Informe seu nome.",
         tooShort: "Use pelo menos 2 caracteres.",
+        tooLong: "Use no máximo 80 caracteres.",
       },
       "contact-email": {
         valueMissing: "Informe seu e-mail.",
         typeMismatch: "Digite um e-mail válido.",
+        tooLong: "Use no máximo 160 caracteres.",
       },
       "contact-message": {
         valueMissing: "Escreva sua mensagem.",
         tooShort: "A mensagem precisa ter pelo menos 12 caracteres.",
+        tooLong: "Use no máximo 2000 caracteres.",
       },
     };
 
@@ -161,9 +181,14 @@
       }
 
       const minLength = Number(field.getAttribute("minlength"));
+      const maxLength = Number(field.getAttribute("maxlength"));
 
       if (minLength && value.length < minLength) {
         return rules.tooShort || `Use pelo menos ${minLength} caracteres.`;
+      }
+
+      if (maxLength && value.length > maxLength) {
+        return rules.tooLong || `Use no máximo ${maxLength} caracteres.`;
       }
 
       return "";
@@ -191,6 +216,7 @@
 
       feedback.textContent = message;
       feedback.classList.toggle("is-success", isSuccess);
+      feedback.classList.toggle("is-error", Boolean(message) && !isSuccess);
     }
 
     function resetFieldState(field) {
@@ -201,6 +227,50 @@
 
       if (errorElement instanceof HTMLElement) {
         errorElement.textContent = "";
+      }
+    }
+
+    function setSubmittingState(isSubmitting) {
+      form.setAttribute("aria-busy", String(isSubmitting));
+
+      if (!(submitButton instanceof HTMLButtonElement)) {
+        return;
+      }
+
+      submitButton.disabled = isSubmitting;
+      submitButton.classList.toggle("is-loading", isSubmitting);
+
+      if (submitLabel instanceof HTMLElement) {
+        submitLabel.textContent = isSubmitting ? "Enviando..." : "Enviar mensagem";
+      }
+    }
+
+    function applyServerErrors(errors = {}) {
+      let firstInvalidField = null;
+
+      Object.entries(errors).forEach(([fieldName, message]) => {
+        const fieldId = fieldIdByName[fieldName];
+        const field = fieldId ? form.querySelector(`#${fieldId}`) : null;
+        const errorElement = fieldId ? form.querySelector(`[data-error-for="${fieldId}"]`) : null;
+
+        if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) {
+          return;
+        }
+
+        field.classList.add("is-invalid");
+        field.setAttribute("aria-invalid", "true");
+
+        if (errorElement instanceof HTMLElement) {
+          errorElement.textContent = String(message);
+        }
+
+        if (!firstInvalidField) {
+          firstInvalidField = field;
+        }
+      });
+
+      if (firstInvalidField) {
+        firstInvalidField.focus();
       }
     }
 
@@ -235,8 +305,51 @@
         resetFieldState(field);
       });
 
-      form.reset();
-      setFeedbackMessage("Mensagem enviada com sucesso.", true);
+      setFeedbackMessage("");
+      setSubmittingState(true);
+
+      const formData = new FormData(form);
+
+      fetch(endpoint, {
+        method: "POST",
+        body: formData,
+        credentials: "same-origin",
+        headers: {
+          Accept: "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      })
+        .then(async (response) => {
+          let payload = null;
+
+          try {
+            payload = await response.json();
+          } catch (error) {
+            payload = null;
+          }
+
+          if (!response.ok || !payload?.success) {
+            const message = payload?.message || "Não foi possível enviar sua mensagem agora.";
+            const errors = payload?.errors && typeof payload.errors === "object" ? payload.errors : {};
+
+            applyServerErrors(errors);
+            setFeedbackMessage(message, false);
+            return;
+          }
+
+          fields.forEach((field) => {
+            resetFieldState(field);
+          });
+
+          form.reset();
+          setFeedbackMessage(payload.message || "Mensagem enviada com sucesso.", true);
+        })
+        .catch(() => {
+          setFeedbackMessage("O envio falhou por instabilidade de conexão. Tente novamente.", false);
+        })
+        .finally(() => {
+          setSubmittingState(false);
+        });
     });
   }
 
@@ -263,9 +376,9 @@
       card.classList.toggle("is-expanded", isExpanded);
       card.setAttribute("aria-expanded", String(isExpanded));
 
-        if (details instanceof HTMLElement) {
-          details.setAttribute("aria-hidden", String(!isExpanded));
-        }
+      if (details instanceof HTMLElement) {
+        details.setAttribute("aria-hidden", String(!isExpanded));
+      }
     }
 
     function collapseCard(card) {
@@ -538,6 +651,30 @@
       window.history.replaceState(null, "", nextUrl);
     }
 
+    function getProjectsScrollOffset() {
+      const isMobileViewport = window.matchMedia("(max-width: 900px)").matches;
+
+      if (!isMobileViewport) {
+        return 0;
+      }
+
+      const rootStyle = window.getComputedStyle(document.documentElement);
+      const cssOffset = Number.parseInt(
+        rootStyle.getPropertyValue("--mobile-header-height"),
+        10,
+      );
+
+      if (Number.isFinite(cssOffset) && cssOffset > 0) {
+        return cssOffset + 12;
+      }
+
+      if (siteHeader instanceof HTMLElement) {
+        return Math.ceil(siteHeader.getBoundingClientRect().height) + 12;
+      }
+
+      return 12;
+    }
+
     function scrollProjectsIntoView(options = {}) {
       const { behavior = "smooth" } = options;
       const scrollTarget = panel instanceof HTMLElement ? panel : layout;
@@ -546,9 +683,14 @@
         return;
       }
 
-      scrollTarget.scrollIntoView({
+      const targetTop =
+        scrollTarget.getBoundingClientRect().top +
+        window.scrollY -
+        getProjectsScrollOffset();
+
+      window.scrollTo({
+        top: Math.max(0, targetTop),
         behavior,
-        block: "start",
       });
     }
 

@@ -140,6 +140,19 @@
   gap: 10px;
 }
 
+.contact-form__honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -204,6 +217,10 @@
   color: #cfe97e;
 }
 
+.contact-form__feedback.is-error {
+  color: #ffb0b0;
+}
+
 .contact-form__submit {
   display: inline-flex;
   align-items: center;
@@ -223,6 +240,15 @@
     transform var(--transition-fast),
     box-shadow var(--transition-fast),
     filter var(--transition-fast);
+}
+
+.contact-form__submit:disabled {
+  cursor: wait;
+  pointer-events: none;
+  transform: none;
+  filter: none;
+  box-shadow: none;
+  opacity: 0.82;
 }
 
 .contact-form__submit:hover {

@@ -21,6 +21,12 @@
   gap: 24px;
 }
 
+.brand-block {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -29,6 +35,82 @@
 .brand__logo {
   width: 148px;
   height: auto;
+}
+
+.brand-locale {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 28px;
+  padding: 0 0 9px;
+  color: rgba(252, 253, 253, 0.52);
+}
+
+.brand-locale::before,
+.brand-locale::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: var(--radius-pill);
+  pointer-events: none;
+}
+
+.brand-locale::before {
+  width: 30px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.brand-locale::after {
+  left: 29px;
+  width: 53px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.brand-locale__link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  transition: color var(--transition-fast), opacity var(--transition-fast);
+  cursor: pointer;
+}
+
+.brand-locale__link:hover,
+.brand-locale__link:focus-visible {
+  color: var(--text);
+}
+
+.brand-locale__link.is-active {
+  color: var(--text);
+}
+
+.brand-locale__divider {
+  color: rgba(252, 253, 253, 0.28);
+  font-size: 11px;
+  line-height: 1;
+}
+
+.brand-locale__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(252, 253, 253, 0.68);
+}
+
+.brand-locale__svg {
+  width: 15px;
+  height: 15px;
+  display: block;
 }
 
 .site-nav {
